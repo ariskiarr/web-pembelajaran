@@ -1,0 +1,18 @@
+# Vercel Deployment Configuration
+
+## Environment Variables
+# No environment variables required for basic deployment
+
+## Build Settings
+VERCEL_BUILD_COMMAND=npm run build
+VERCEL_INSTALL_COMMAND=npm install
+VERCEL_OUTPUT_DIRECTORY=.next
+
+## Node.js Version
+NODE_VERSION=20
+
+## Framework Detection
+FRAMEWORK=nextjs
+
+## Performance Optimizations
+ENABLE_EXPERIMENTAL_COREPACK=1

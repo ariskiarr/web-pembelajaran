@@ -1,6 +1,11 @@
-# Python Learning Interactive
+# 🐍 Python Learning Interactive
 
 Platform pembelajaran Python interaktif dengan editor kode real-time dan eksekusi Python di browser menggunakan Pyodide.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ariskiarr/web-pembelajaran)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-blue)](https://web-pembelajaran.vercel.app)
+
+> 🚀 **Ready for Production**: Proyek ini sudah siap di-deploy ke Vercel dengan konfigurasi optimal!
 
 ## 🚀 Fitur Utama
 
@@ -180,6 +185,75 @@ src/
 - Pastikan localStorage browser enabled
 - Jangan gunakan incognito/private mode
 - Check browser storage settings
+
+## 🚀 Deployment
+
+### Deploy ke Vercel (Recommended)
+
+#### Option 1: One-Click Deploy
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ariskiarr/web-pembelajaran)
+
+#### Option 2: Manual Deploy
+
+1. **Install Vercel CLI**
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Login ke Vercel**
+   ```bash
+   vercel login
+   ```
+
+3. **Deploy**
+   ```bash
+   vercel --prod
+   ```
+
+#### Option 3: GitHub Integration
+
+1. Push code ke GitHub repository
+2. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+3. Click "Import Project"
+4. Select your GitHub repository
+5. Vercel akan auto-detect Next.js dan setup deployment
+
+### Deploy ke Platform Lain
+
+#### Netlify
+1. Build project: `npm run build`
+2. Upload folder `.next` ke Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `.next`
+
+#### Railway
+```bash
+npm install -g @railway/cli
+railway login
+railway init
+railway up
+```
+
+### Environment Variables
+
+Tidak ada environment variables yang dibutuhkan untuk deployment dasar. Semua berjalan client-side dengan Pyodide.
+
+### Build Optimization
+
+Project sudah dikonfigurasi dengan:
+- ✅ **Static optimization** untuk performance
+- ✅ **Image optimization** dengan WebP/AVIF
+- ✅ **Code splitting** otomatis
+- ✅ **Bundle analysis** ready
+- ✅ **Security headers** configured
+- ✅ **Pyodide optimization** untuk WebAssembly
+
+### Performance Tips
+
+1. **Lazy loading**: Monaco Editor dan Pyodide di-load on-demand
+2. **Caching**: Assets di-cache secara optimal
+3. **Compression**: Gzip/Brotli enabled by default
+4. **CDN**: Vercel Edge Network untuk global performance
 
 ## 🤝 Kontribusi
 
