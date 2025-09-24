@@ -15,7 +15,8 @@ export const materials: LearningMaterial[] = [
     id: "programming-history",
     title: "Sejarah Bahasa Pemrograman",
     category: "Pengenalan",
-    description: "Pelajari perjalanan evolusi bahasa pemrograman dari masa ke masa hingga era modern",
+    description:
+      "Pelajari perjalanan evolusi bahasa pemrograman dari masa ke masa hingga era modern",
     content: `
 # Sejarah Bahasa Pemrograman
 
@@ -214,21 +215,22 @@ print("Hello World!")`,
       "Setiap era memperkenalkan paradigma baru",
       "Bahasa modern fokus pada produktivitas dan readability",
       "Spesialisasi bahasa untuk domain tertentu",
-      "Komunitas dan ekosistem menjadi faktor penting"
+      "Komunitas dan ekosistem menjadi faktor penting",
     ],
     nextSteps: [
       "Pelajari sejarah Python secara spesifik",
       "Pahami paradigma pemrograman yang berbeda",
       "Eksplorasi bahasa modern seperti Rust atau Go",
-      "Pelajari tentang compiler vs interpreter"
+      "Pelajari tentang compiler vs interpreter",
     ],
-    relatedExercises: []
+    relatedExercises: [],
   },
   {
     id: "python-history",
     title: "Sejarah Bahasa Python",
     category: "Pengenalan",
-    description: "Mengenal asal usul Python, filosofi desain, dan perkembangannya menjadi bahasa populer",
+    description:
+      "Mengenal asal usul Python, filosofi desain, dan perkembangannya menjadi bahasa populer",
     content: `
 # Sejarah Bahasa Python
 
@@ -556,15 +558,15 @@ match status:
       "Python 3 memperkenalkan breaking changes untuk membersihkan bahasa",
       "Ekosistem kaya dengan PyPI dan 400,000+ packages",
       "Dominant dalam AI, data science, dan web development",
-      "Komunitas yang inklusif dengan Python Software Foundation"
+      "Komunitas yang inklusif dengan Python Software Foundation",
     ],
     nextSteps: [
       "Pahami filosofi Python dan PEP 20 (The Zen of Python)",
       "Pelajari perbedaan Python 2 vs Python 3",
       "Eksplorasi ekosistem Python dan PyPI",
-      "Mulai dengan syntax dasar Python"
+      "Mulai dengan syntax dasar Python",
     ],
-    relatedExercises: ["1"]
+    relatedExercises: ["1"],
   },
   {
     id: "python-basics",

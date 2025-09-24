@@ -191,16 +191,19 @@ src/
 ### Deploy ke Vercel (Recommended)
 
 #### Option 1: One-Click Deploy
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ariskiarr/web-pembelajaran)
 
 #### Option 2: Manual Deploy
 
 1. **Install Vercel CLI**
+
    ```bash
    npm i -g vercel
    ```
 
 2. **Login ke Vercel**
+
    ```bash
    vercel login
    ```
@@ -221,12 +224,14 @@ src/
 ### Deploy ke Platform Lain
 
 #### Netlify
+
 1. Build project: `npm run build`
 2. Upload folder `.next` ke Netlify
 3. Set build command: `npm run build`
 4. Set publish directory: `.next`
 
 #### Railway
+
 ```bash
 npm install -g @railway/cli
 railway login
@@ -241,6 +246,7 @@ Tidak ada environment variables yang dibutuhkan untuk deployment dasar. Semua be
 ### Build Optimization
 
 Project sudah dikonfigurasi dengan:
+
 - ✅ **Static optimization** untuk performance
 - ✅ **Image optimization** dengan WebP/AVIF
 - ✅ **Code splitting** otomatis

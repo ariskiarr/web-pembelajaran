@@ -84,7 +84,9 @@ export default function MaterialPage() {
 
   const formatTextWithMarkdown = (text: string) => {
     // Simple approach: find and replace patterns one by one
-    const processText = (inputText: string): (string | React.ReactElement)[] => {
+    const processText = (
+      inputText: string
+    ): (string | React.ReactElement)[] => {
       const result: (string | React.ReactElement)[] = [];
       let remaining = inputText;
       let elementKey = 0;
@@ -97,16 +99,21 @@ export default function MaterialPage() {
           if (boldMatch.index > 0) {
             result.push(remaining.substring(0, boldMatch.index));
           }
-          
+
           // Add bold element
           result.push(
-            <strong key={`bold-${elementKey++}`} className="font-bold text-gray-900">
+            <strong
+              key={`bold-${elementKey++}`}
+              className="font-bold text-gray-900"
+            >
               {boldMatch[1]}
             </strong>
           );
-          
+
           // Continue with remaining text
-          remaining = remaining.substring(boldMatch.index + boldMatch[0].length);
+          remaining = remaining.substring(
+            boldMatch.index + boldMatch[0].length
+          );
           continue;
         }
 
@@ -117,16 +124,21 @@ export default function MaterialPage() {
           if (codeMatch.index > 0) {
             result.push(remaining.substring(0, codeMatch.index));
           }
-          
+
           // Add code element
           result.push(
-            <code key={`code-${elementKey++}`} className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono">
+            <code
+              key={`code-${elementKey++}`}
+              className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono"
+            >
               {codeMatch[1]}
             </code>
           );
-          
+
           // Continue with remaining text
-          remaining = remaining.substring(codeMatch.index + codeMatch[0].length);
+          remaining = remaining.substring(
+            codeMatch.index + codeMatch[0].length
+          );
           continue;
         }
 
@@ -148,7 +160,7 @@ export default function MaterialPage() {
         return (
           <h1
             key={index}
-            className="text-3xl font-bold text-gray-900 mb-6 mt-8 first:mt-0"
+            className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 mt-6 sm:mt-8 first:mt-0"
           >
             {formatTextWithMarkdown(line.slice(2))}
           </h1>
@@ -158,7 +170,7 @@ export default function MaterialPage() {
         return (
           <h2
             key={index}
-            className="text-2xl font-bold text-gray-800 mb-4 mt-6"
+            className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 mt-5 sm:mt-6"
           >
             {formatTextWithMarkdown(line.slice(3))}
           </h2>
@@ -168,7 +180,7 @@ export default function MaterialPage() {
         return (
           <h3
             key={index}
-            className="text-xl font-semibold text-gray-800 mb-3 mt-5"
+            className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 mt-4 sm:mt-5"
           >
             {formatTextWithMarkdown(line.slice(4))}
           </h3>
@@ -185,7 +197,7 @@ export default function MaterialPage() {
         return (
           <li
             key={index}
-            className="text-gray-700 leading-relaxed mb-2 ml-4 list-disc"
+            className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 ml-4 list-disc"
           >
             {formatTextWithMarkdown(line.slice(2))}
           </li>
@@ -197,7 +209,7 @@ export default function MaterialPage() {
         return (
           <li
             key={index}
-            className="text-gray-700 leading-relaxed mb-2 ml-4 list-decimal"
+            className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 ml-4 list-decimal"
           >
             {formatTextWithMarkdown(line.replace(/^\d+\.\s*/, ""))}
           </li>
@@ -207,7 +219,7 @@ export default function MaterialPage() {
       // Regular paragraphs
       if (line.trim()) {
         return (
-          <p key={index} className="text-gray-700 leading-relaxed mb-4">
+          <p key={index} className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
             {formatTextWithMarkdown(line)}
           </p>
         );
@@ -221,192 +233,229 @@ export default function MaterialPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Left side */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 flex-1 min-w-0">
               <button
                 onClick={() => router.push("/materials")}
-                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-1.5 sm:p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
               >
-                <ArrowLeft className="w-5 h-5" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               <div className="hidden sm:block w-px h-6 bg-gray-300" />
 
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900 truncate">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-sm sm:text-lg font-semibold text-gray-900 truncate">
                   {material.title}
                 </h1>
-                <p className="text-sm text-gray-500">{material.category}</p>
+                <p className="text-xs sm:text-sm text-gray-500 truncate hidden xs:block">{material.category}</p>
               </div>
             </div>
 
             {/* Right side */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               {/* Progress indicator */}
-              <div className="hidden sm:flex items-center space-x-2">
+              <div className="hidden md:flex items-center space-x-2">
                 {isCompleted ? (
                   <div className="flex items-center space-x-2 text-green-600">
-                    <CheckCircle className="w-5 h-5" />
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="text-sm font-medium">Completed</span>
                   </div>
                 ) : (
                   <div className="flex items-center space-x-2 text-gray-500">
-                    <Clock className="w-5 h-5" />
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="text-sm">In Progress</span>
                   </div>
+                )}
+              </div>
+
+              {/* Mobile progress indicator */}
+              <div className="md:hidden">
+                {isCompleted ? (
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                ) : (
+                  <Clock className="w-5 h-5 text-gray-500" />
                 )}
               </div>
 
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="sm:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+                className="lg:hidden p-1.5 sm:p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex min-h-0">
         {/* Sidebar */}
         {(isSidebarOpen ||
-          (typeof window !== "undefined" && window.innerWidth >= 768)) && (
+          (typeof window !== "undefined" && window.innerWidth >= 1024)) && (
           <motion.aside
-            initial={{ x: -300 }}
-            animate={{ x: 0 }}
-            exit={{ x: -300 }}
-            className="fixed sm:sticky top-16 left-0 w-80 h-[calc(100vh-4rem)] bg-white border-r border-gray-200 z-30 overflow-y-auto"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -100, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed lg:sticky top-14 sm:top-16 left-0 w-full sm:w-96 lg:w-80 h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] bg-white lg:border-r border-gray-200 z-30 overflow-y-auto shadow-xl lg:shadow-none"
           >
-            <div className="p-6">
-              {/* Material overview */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Overview
-                </h3>
-
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Target className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-1">
-                        Key Points
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        {material.keyPoints.length} important concepts
-                      </p>
-                    </div>
+            <div className="h-full flex flex-col">
+              {/* Mobile header */}
+              <div className="lg:hidden flex items-center justify-between p-4 border-b bg-gray-50">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-blue-600" />
                   </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Code className="w-4 h-4 text-green-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-1">
-                        Practice
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        {relatedExercises.length} related exercises
-                      </p>
-                    </div>
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">Detail Materi</h2>
+                    <p className="text-sm text-gray-500">{material.category}</p>
                   </div>
                 </div>
+                <button
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
 
-              {/* Key Points */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Key Points
-                </h3>
-                <ul className="space-y-3">
-                  {material.keyPoints.map((point, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-xs font-medium text-blue-600">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        {point}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Content */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="p-4 lg:p-6 space-y-6">
+                  {/* Material overview */}
+                  <div>
+                    <h3 className="hidden lg:block text-lg font-semibold text-gray-900 mb-4">
+                      Overview
+                    </h3>
 
-              {/* Next Steps */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Next Steps
-                </h3>
-                <ul className="space-y-3">
-                  {material.nextSteps.map((step, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        {step}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Related Exercises */}
-              {relatedExercises.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Practice Exercises
-                  </h3>
-                  <div className="space-y-2">
-                    {relatedExercises.map((exercise) => (
-                      <button
-                        key={exercise.id}
-                        onClick={() => router.push(`/exercise/${exercise.id}`)}
-                        className="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors group"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
-                              {exercise.title}
-                            </h4>
-                            <p className="text-sm text-gray-600 mt-1">
-                              {exercise.difficulty}
-                            </p>
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="bg-blue-50 rounded-xl p-4">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <Target className="w-4 h-4 text-blue-600" />
                           </div>
-                          <Target className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                          <h4 className="font-semibold text-gray-900">Key Points</h4>
                         </div>
-                      </button>
-                    ))}
+                        <p className="text-sm text-gray-600 ml-11">
+                          {material.keyPoints.length} konsep penting
+                        </p>
+                      </div>
+
+                      <div className="bg-green-50 rounded-xl p-4">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <Code className="w-4 h-4 text-green-600" />
+                          </div>
+                          <h4 className="font-semibold text-gray-900">Practice</h4>
+                        </div>
+                        <p className="text-sm text-gray-600 ml-11">
+                          {relatedExercises.length} latihan tersedia
+                        </p>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Key Points */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Key Points
+                    </h3>
+                    <div className="space-y-3">
+                      {material.keyPoints.map((point, index) => (
+                        <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                          <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-semibold">
+                            {index + 1}
+                          </div>
+                          <p className="text-sm text-gray-700 leading-relaxed">
+                            {point}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Next Steps */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Next Steps
+                    </h3>
+                    <div className="space-y-2">
+                      {material.nextSteps.map((step, index) => (
+                        <div key={index} className="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg">
+                          <div className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-semibold">
+                            {index + 1}
+                          </div>
+                          <p className="text-sm text-gray-700 leading-relaxed">
+                            {step}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Related Exercises */}
+                  {relatedExercises.length > 0 && (
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                        Latihan Terkait
+                      </h3>
+                      <div className="space-y-3">
+                        {relatedExercises.map((exercise) => (
+                          <button
+                            key={exercise.id}
+                            onClick={() => router.push(`/exercise/${exercise.id}`)}
+                            className="w-full text-left p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 hover:from-blue-100 hover:to-purple-100 rounded-xl transition-all duration-200 group"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center space-x-2 mb-2">
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                  <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 text-sm truncate">
+                                    {exercise.title}
+                                  </h4>
+                                </div>
+                                <p className="text-xs text-gray-600">
+                                  Level: {exercise.difficulty}
+                                </p>
+                              </div>
+                              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 flex-shrink-0" />
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </motion.aside>
         )}
 
         {/* Main Content */}
-        <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="flex-1 max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
+            className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
           >
             {/* Article Header */}
-            <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8">
+            <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-4 sm:p-6 lg:p-8">
               <div className="flex items-start justify-between">
-                <div>
-                  <div className="inline-flex items-center px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    {material.category}
+                <div className="flex-1 min-w-0">
+                  <div className="inline-flex items-center px-2.5 sm:px-3 py-1 bg-white/20 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4">
+                    <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                    <span className="truncate">{material.category}</span>
                   </div>
-                  <h1 className="text-3xl font-bold mb-4">{material.title}</h1>
-                  <p className="text-blue-100 text-lg leading-relaxed">
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 leading-tight">
+                    {material.title}
+                  </h1>
+                  <p className="text-blue-100 text-sm sm:text-base lg:text-lg leading-relaxed">
                     {material.description}
                   </p>
                 </div>
@@ -414,20 +463,20 @@ export default function MaterialPage() {
             </header>
 
             {/* Article Content */}
-            <div className="p-8">
-              <div className="prose prose-lg max-w-none">
+            <div className="p-4 sm:p-6 lg:p-8">
+              <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
                 {formatContent(material.content)}
               </div>
 
               {/* Code Example */}
               {material.codeExample && (
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Code className="w-5 h-5 mr-2 text-gray-600" />
+                <div className="mt-6 sm:mt-8">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center">
+                    <Code className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-gray-600" />
                     Code Example
                   </h3>
-                  <div className="bg-gray-900 rounded-xl p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-sm">
+                  <div className="bg-gray-900 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 overflow-x-auto">
+                    <pre className="text-green-400 text-xs sm:text-sm">
                       <code>{material.codeExample}</code>
                     </pre>
                   </div>
@@ -435,18 +484,18 @@ export default function MaterialPage() {
               )}
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-8 border-t border-gray-200">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
                 {!isCompleted ? (
                   <button
                     onClick={markAsCompleted}
-                    className="flex-1 bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                    className="flex-1 bg-blue-600 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-sm sm:text-base"
                   >
-                    <CheckCircle className="w-5 h-5" />
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Mark as Completed</span>
                   </button>
                 ) : (
-                  <div className="flex-1 bg-green-50 border-2 border-green-200 text-green-800 py-4 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  <div className="flex-1 bg-green-50 border-2 border-green-200 text-green-800 py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold flex items-center justify-center space-x-2 text-sm sm:text-base">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                     <span>Completed</span>
                   </div>
                 )}
@@ -456,9 +505,9 @@ export default function MaterialPage() {
                     onClick={() =>
                       router.push(`/exercise/${relatedExercises[0].id}`)
                     }
-                    className="flex-1 bg-gray-100 text-gray-800 py-4 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2"
+                    className="flex-1 bg-gray-100 text-gray-800 py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2 text-sm sm:text-base"
                   >
-                    <Trophy className="w-5 h-5" />
+                    <Trophy className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Practice Now</span>
                   </button>
                 )}
@@ -471,7 +520,7 @@ export default function MaterialPage() {
       {/* Mobile overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 sm:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}

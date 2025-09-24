@@ -12,9 +12,11 @@
 ## 🎯 Quick Deploy Options
 
 ### Option 1: One-Click Deploy (Recommended)
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ariskiarr/web-pembelajaran)
 
 ### Option 2: Vercel CLI
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -27,6 +29,7 @@ vercel --prod
 ```
 
 ### Option 3: GitHub Integration
+
 1. Push to GitHub
 2. Connect repository to Vercel
 3. Auto-deploy on every push
@@ -34,6 +37,7 @@ vercel --prod
 ## 📋 Deployment Configuration
 
 ### Build Settings
+
 ```
 Build Command: npm run build
 Output Directory: .next
@@ -42,12 +46,14 @@ Node.js Version: 20.x
 ```
 
 ### Environment Variables
+
 ```
 # No environment variables required
 # All functionality runs client-side
 ```
 
 ### Custom Domains
+
 ```bash
 # Add custom domain
 vercel domains add yourdomain.com
@@ -57,9 +63,10 @@ vercel alias your-project.vercel.app yourdomain.com
 ## 🔧 Performance Optimizations
 
 ### Implemented:
+
 - ✅ **Static Site Generation (SSG)**
 - ✅ **Automatic Code Splitting**
-- ✅ **Image Optimization** 
+- ✅ **Image Optimization**
 - ✅ **Bundle Analysis**
 - ✅ **Gzip/Brotli Compression**
 - ✅ **CDN Distribution**
@@ -67,6 +74,7 @@ vercel alias your-project.vercel.app yourdomain.com
 - ✅ **Lazy Loading** (Monaco Editor, Pyodide)
 
 ### Bundle Analysis:
+
 ```bash
 npm run build
 # Check the build output for bundle sizes
@@ -75,12 +83,14 @@ npm run build
 ## 🌍 Global Performance
 
 ### Vercel Edge Network:
+
 - **Global CDN**: 100+ edge locations
 - **Smart Routing**: Automatic load balancing
 - **Cold Boot Optimization**: Faster startup times
 - **WebAssembly Support**: Optimized Pyodide loading
 
 ### Performance Metrics:
+
 - **Time to Interactive**: < 3s
 - **First Contentful Paint**: < 1.5s
 - **Largest Contentful Paint**: < 2.5s
@@ -89,6 +99,7 @@ npm run build
 ## 🔒 Security & Monitoring
 
 ### Security Headers:
+
 ```
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
@@ -96,6 +107,7 @@ Referrer-Policy: origin-when-cross-origin
 ```
 
 ### Analytics:
+
 - **Vercel Analytics**: Built-in performance monitoring
 - **Web Vitals**: Core performance metrics
 - **Error Tracking**: Automatic error reporting
@@ -105,6 +117,7 @@ Referrer-Policy: origin-when-cross-origin
 ### Common Issues:
 
 #### Build Failures
+
 ```bash
 # Clear cache and rebuild
 rm -rf .next node_modules package-lock.json
@@ -113,34 +126,39 @@ npm run build
 ```
 
 #### Pyodide Loading Issues
+
 - Ensure CDN access for WebAssembly files
 - Check browser WebAssembly support
 - Verify CORS headers for cross-origin requests
 
 #### Monaco Editor Problems
+
 - Confirm browser supports Web Workers
 - Check CSP headers for worker scripts
 - Verify static asset loading
 
 ### Debug Mode:
+
 ```bash
 # Local debugging
 npm run dev
 # Check console for errors
 
-# Production debugging  
+# Production debugging
 vercel logs your-project-url
 ```
 
 ## 📈 Monitoring & Maintenance
 
 ### Performance Monitoring:
+
 1. **Vercel Analytics**: Real user metrics
 2. **Lighthouse CI**: Automated audits
 3. **Bundle Analyzer**: Track bundle size
 4. **Error Tracking**: Production error monitoring
 
 ### Regular Updates:
+
 ```bash
 # Update dependencies
 npm update
@@ -155,6 +173,7 @@ npm run build && vercel --prod
 ## 🎉 Post-Deployment
 
 ### Verification Checklist:
+
 - [ ] **Homepage loads** correctly
 - [ ] **Materials page** shows all content
 - [ ] **Exercise pages** load Monaco Editor
@@ -164,6 +183,7 @@ npm run build && vercel --prod
 - [ ] **Performance** meets Web Vitals standards
 
 ### Share Your Project:
+
 ```
 🌐 Live Demo: https://your-project.vercel.app
 📱 Mobile Friendly: Optimized for all devices
@@ -175,4 +195,4 @@ npm run build && vercel --prod
 
 **Happy Deploying! 🚀✨**
 
-*Need help? Check [Vercel Documentation](https://vercel.com/docs) or create an issue in this repository.*
+_Need help? Check [Vercel Documentation](https://vercel.com/docs) or create an issue in this repository._

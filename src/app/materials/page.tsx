@@ -111,16 +111,17 @@ export default function MaterialsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
+      {/* Header - Mobile Optimized */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
+            {/* Main content row */}
             <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
               <Link href="/">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium shadow-md text-sm sm:text-base"
+                  className="flex items-center gap-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium shadow-md text-sm"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   <span className="hidden xs:inline">Home</span>
@@ -128,59 +129,68 @@ export default function MaterialsPage() {
               </Link>
 
               <div className="min-w-0 flex-1">
-                <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 flex items-center gap-1 sm:gap-2 lg:gap-3">
-                  <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 text-blue-600 flex-shrink-0" />
-                  <span className="truncate text-sm sm:text-lg lg:text-xl xl:text-2xl">
+                <h1 className="text-base sm:text-xl lg:text-2xl font-bold text-gray-900 flex items-center gap-1 sm:gap-2">
+                  <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 flex-shrink-0" />
+                  <span className="truncate">
                     <span className="hidden sm:inline">
                       Materi Pembelajaran{" "}
                     </span>
                     Python
                   </span>
                 </h1>
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 mt-1 hidden sm:block">
+                <p className="text-xs sm:text-sm text-gray-600 mt-0.5 hidden sm:block">
                   Pelajari teori dan kerjakan latihan interaktif
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+            {/* Action buttons row */}
+            <div className="flex items-center justify-between sm:justify-end gap-3">
+              {/* Progress section - more prominent on mobile */}
+              <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg flex-1 sm:flex-none sm:text-right">
+                <Trophy className="h-4 w-4 text-yellow-500 flex-shrink-0" />
+                <div className="flex-1 sm:min-w-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-2 text-sm text-gray-600">
+                    <span className="font-medium">
+                      {completedCount}/{totalCount}
+                    </span>
+                    <span className="text-xs text-gray-500 sm:hidden">
+                      Progress
+                    </span>
+                  </div>
+                  <div className="w-full sm:w-20 bg-gray-200 rounded-full h-2 mt-1">
+                    <div
+                      className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-500"
+                      style={{
+                        width: `${(completedCount / totalCount) * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* History button */}
               <Link href="/history">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors font-medium shadow-md text-sm sm:text-base"
+                  className="flex items-center gap-1 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors font-medium shadow-md text-sm"
                 >
                   <Clock className="h-4 w-4" />
                   <span className="hidden xs:inline">Riwayat</span>
                 </motion.button>
               </Link>
-
-              <div className="text-right min-w-0">
-                <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-600 whitespace-nowrap">
-                  <Trophy className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500 flex-shrink-0" />
-                  <span className="hidden xs:inline">Progress:</span>
-                  <span className="font-medium">
-                    {completedCount}/{totalCount}
-                  </span>
-                </div>
-                <div className="w-16 sm:w-20 bg-gray-200 rounded-full h-1.5 sm:h-2 mt-1">
-                  <div
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 h-1.5 sm:h-2 rounded-full transition-all duration-500"
-                    style={{ width: `${(completedCount / totalCount) * 100}%` }}
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Progress Overview */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl shadow-lg p-6 mb-8"
+          className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8"
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
@@ -234,31 +244,35 @@ export default function MaterialsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex justify-center mb-6 sm:mb-8"
+          className="flex justify-center mb-6 sm:mb-8 px-4 sm:px-0"
         >
-          <div className="bg-gray-100 rounded-2xl p-1.5 sm:p-2 shadow-inner w-full max-w-md sm:max-w-none sm:w-auto">
-            <div className="grid grid-cols-2 sm:flex sm:space-x-2 gap-1 sm:gap-0">
+          <div className="bg-gray-100 rounded-2xl p-1.5 sm:p-2 shadow-inner w-full max-w-lg sm:max-w-none sm:w-auto">
+            <div className="flex gap-2">
               <button
                 onClick={() => setActiveSection("materials")}
-                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base ${
+                className={`flex-1 sm:flex-none px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-0 ${
                   activeSection === "materials"
-                    ? "bg-blue-600 text-white shadow-lg transform scale-105"
+                    ? "bg-blue-600 text-white shadow-lg transform scale-[1.02] sm:scale-105"
                     : "text-gray-600 hover:text-gray-800 hover:bg-white/50"
                 }`}
               >
-                <Book className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden xs:inline">Materi </span>Teori
+                <Book className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+                <span className="truncate">
+                  <span className="hidden xs:inline">Materi </span>Teori
+                </span>
               </button>
               <button
                 onClick={() => setActiveSection("exercises")}
-                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base ${
+                className={`flex-1 sm:flex-none px-3 sm:px-8 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base min-w-0 ${
                   activeSection === "exercises"
-                    ? "bg-blue-600 text-white shadow-lg transform scale-105"
+                    ? "bg-blue-600 text-white shadow-lg transform scale-[1.02] sm:scale-105"
                     : "text-gray-600 hover:text-gray-800 hover:bg-white/50"
                 }`}
               >
-                <Code className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="hidden xs:inline">Latihan </span>Praktik
+                <Code className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+                <span className="truncate">
+                  <span className="hidden xs:inline">Latihan </span>Praktik
+                </span>
               </button>
             </div>
           </div>
@@ -313,16 +327,16 @@ export default function MaterialsPage() {
 
           {/* Category Filter */}
           <div className="relative z-10 mb-8">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <div className="flex items-center gap-2">
-                <label className="text-lg font-bold text-gray-800">
+                <label className="text-base sm:text-lg font-bold text-gray-800">
                   Kategori
                 </label>
               </div>
               <div className="h-px bg-gradient-to-r from-gray-200 to-transparent flex-1"></div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
               {(activeSection === "materials"
                 ? materialCategories
                 : categories
@@ -340,7 +354,7 @@ export default function MaterialsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05, duration: 0.3 }}
-                  className={`group relative px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ease-out overflow-hidden ${
+                  className={`group relative px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-300 ease-out overflow-hidden ${
                     selectedCategory === category
                       ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
                       : "bg-white text-gray-700 hover:text-blue-600 border border-gray-200 hover:border-blue-300 shadow-sm hover:shadow-md"
@@ -378,16 +392,16 @@ export default function MaterialsPage() {
           {/* Difficulty Filter for Exercises */}
           {activeSection === "exercises" && (
             <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
                 <div className="flex items-center gap-2">
-                  <label className="text-lg font-bold text-gray-800">
+                  <label className="text-base sm:text-lg font-bold text-gray-800">
                     Tingkat Kesulitan
                   </label>
                 </div>
                 <div className="h-px bg-gradient-to-r from-gray-200 to-transparent flex-1"></div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                 {[
                   {
                     value: "all",
@@ -435,7 +449,7 @@ export default function MaterialsPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.4 }}
-                    className={`group relative px-4 py-6 rounded-3xl text-sm font-semibold transition-all duration-500 ease-out overflow-hidden ${
+                    className={`group relative px-3 sm:px-4 py-4 sm:py-6 rounded-2xl sm:rounded-3xl text-xs sm:text-sm font-semibold transition-all duration-500 ease-out overflow-hidden ${
                       selectedDifficulty === difficulty.value
                         ? `bg-gradient-to-br ${difficulty.color} text-white shadow-xl border-2 border-white/20`
                         : `bg-white text-gray-700 hover:text-gray-800 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl`
@@ -465,10 +479,10 @@ export default function MaterialsPage() {
                     ></div>
 
                     {/* Content */}
-                    <div className="relative z-10 flex flex-col items-center gap-3">
+                    <div className="relative z-10 flex flex-col items-center gap-2 sm:gap-3">
                       {/* Icon with Animation */}
                       <motion.div
-                        className="text-3xl"
+                        className="text-2xl sm:text-3xl"
                         animate={{
                           scale:
                             selectedDifficulty === difficulty.value
@@ -490,11 +504,11 @@ export default function MaterialsPage() {
 
                       {/* Label */}
                       <div className="text-center">
-                        <div className="font-bold text-base mb-1">
+                        <div className="font-bold text-sm sm:text-base mb-0.5 sm:mb-1">
                           {difficulty.label}
                         </div>
                         <div
-                          className={`text-xs opacity-80 ${
+                          className={`text-xs opacity-80 leading-tight ${
                             selectedDifficulty === difficulty.value
                               ? "text-white/80"
                               : "text-gray-500"
@@ -536,7 +550,7 @@ export default function MaterialsPage() {
         >
           {activeSection === "materials" ? (
             // Materials Grid
-            <div className="grid gap-4 sm:gap-6">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredMaterials.map((material, index) => {
                 const isCompleted = completedMaterials.includes(material.id);
 
@@ -554,74 +568,70 @@ export default function MaterialsPage() {
                       duration: 0.6,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
-                    className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
+                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
                       isCompleted ? "ring-2 ring-green-500 ring-opacity-50" : ""
                     }`}
                   >
                     <div className="p-4 sm:p-6">
-                      <div className="flex items-start justify-between mb-3 sm:mb-4">
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                              {material.category}
-                            </span>
-                            {isCompleted && (
-                              <div className="flex items-center gap-1">
-                                <CheckCircle className="h-4 w-4 text-green-500" />
-                                <span className="text-xs text-green-600 font-medium">
-                                  Selesai
-                                </span>
-                              </div>
-                            )}
-                          </div>
-
-                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            {material.title}
-                          </h3>
-                          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                            {material.description}
-                          </p>
-
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                      <div className="flex flex-col">
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                            {material.category}
+                          </span>
+                          {isCompleted && (
                             <div className="flex items-center gap-1">
-                              <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
-                              <span className="hidden xs:inline">Materi </span>
-                              Teori
+                              <CheckCircle className="h-4 w-4 text-green-500" />
+                              <span className="text-xs text-green-600 font-medium">
+                                Selesai
+                              </span>
                             </div>
-                            <div className="flex items-center gap-1">
-                              <Target className="h-3 w-3 sm:h-4 sm:w-4" />
-                              {material.keyPoints.length} Poin
-                            </div>
-                            {material.relatedExercises.length > 0 && (
-                              <div className="flex items-center gap-1">
-                                <Code className="h-3 w-3 sm:h-4 sm:w-4" />
-                                {material.relatedExercises.length}{" "}
-                                <span className="hidden xs:inline">
-                                  Latihan
-                                </span>
-                              </div>
-                            )}
-                          </div>
+                          )}
                         </div>
 
-                        <Link href={`/material/${material.id}`}>
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                          {material.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                          {material.description}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                          <div className="flex items-center gap-1">
+                            <FileText className="h-3 w-3" />
+                            <span className="hidden xs:inline">Materi </span>
+                            Teori
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Target className="h-3 w-3" />
+                            {material.keyPoints.length} Poin
+                          </div>
+                          {material.relatedExercises.length > 0 && (
+                            <div className="flex items-center gap-1">
+                              <Code className="h-3 w-3" />
+                              {material.relatedExercises.length}{" "}
+                              <span className="hidden xs:inline">Latihan</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <Link
+                          href={`/material/${material.id}`}
+                          className="mt-auto"
+                        >
                           <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base ${
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
                               isCompleted
                                 ? "bg-green-100 text-green-700 hover:bg-green-200"
                                 : "bg-blue-600 text-white hover:bg-blue-700"
                             }`}
                           >
-                            <Book className="h-3 w-3 sm:h-4 sm:w-4" />
-                            <span className="hidden xs:inline">
+                            <Book className="h-4 w-4" />
+                            <span>
                               {isCompleted ? "Baca Ulang" : "Pelajari"}
                             </span>
-                            <span className="xs:hidden">
-                              {isCompleted ? "Ulang" : "Baca"}
-                            </span>
-                            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <ChevronRight className="h-4 w-4" />
                           </motion.button>
                         </Link>
                       </div>
@@ -632,7 +642,7 @@ export default function MaterialsPage() {
             </div>
           ) : (
             // Exercise List
-            <div className="grid gap-4 sm:gap-6">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredExercises.map((exercise, index) => {
                 const status = exerciseStatuses[exercise.id] || {
                   completed: false,
@@ -654,89 +664,87 @@ export default function MaterialsPage() {
                       duration: 0.6,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
-                    className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
+                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
                       status.completed
                         ? "ring-2 ring-green-500 ring-opacity-50"
                         : ""
                     }`}
                   >
                     <div className="p-4 sm:p-6">
-                      <div className="flex items-start justify-between mb-3 sm:mb-4">
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                            <span className="text-xs sm:text-sm font-medium text-gray-500">
-                              #{exercise.id}
-                            </span>
-                            <span
-                              className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
-                                exercise.difficulty
-                              )}`}
-                            >
-                              {getDifficultyText(exercise.difficulty)}
-                            </span>
-                            <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                              {exercise.category}
-                            </span>
-                            {status.completed && (
-                              <div className="flex items-center gap-1">
-                                <Trophy className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
-                                <span className="text-xs text-green-600 font-medium">
-                                  Selesai
-                                </span>
-                              </div>
-                            )}
-                          </div>
-
-                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            {exercise.title}
-                          </h3>
-                          <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                            {exercise.description}
-                          </p>
-
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                      <div className="flex flex-col">
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          <span className="text-xs font-medium text-gray-500">
+                            #{exercise.id}
+                          </span>
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
+                              exercise.difficulty
+                            )}`}
+                          >
+                            {getDifficultyText(exercise.difficulty)}
+                          </span>
+                          <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                            {exercise.category}
+                          </span>
+                          {status.completed && (
                             <div className="flex items-center gap-1">
-                              <Star className="h-3 w-3 sm:h-4 sm:w-4" />
-                              {exercise.points} XP
+                              <Trophy className="h-4 w-4 text-green-500" />
+                              <span className="text-xs text-green-600 font-medium">
+                                Selesai
+                              </span>
                             </div>
-                            {status.attempts > 0 && (
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                                <span className="hidden xs:inline">
-                                  {status.attempts} percobaan
-                                </span>
-                                <span className="xs:hidden">
-                                  {status.attempts}x
-                                </span>
-                              </div>
-                            )}
-                            {status.completed && (
-                              <div className="flex items-center gap-1">
-                                <Target className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
-                                {status.score} XP
-                              </div>
-                            )}
-                          </div>
+                          )}
                         </div>
 
-                        <Link href={`/exercise/${exercise.id}`}>
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                          {exercise.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                          {exercise.description}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                          <div className="flex items-center gap-1">
+                            <Star className="h-3 w-3" />
+                            {exercise.points} XP
+                          </div>
+                          {status.attempts > 0 && (
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              <span className="hidden xs:inline">
+                                {status.attempts} percobaan
+                              </span>
+                              <span className="xs:hidden">
+                                {status.attempts}x
+                              </span>
+                            </div>
+                          )}
+                          {status.completed && (
+                            <div className="flex items-center gap-1">
+                              <Target className="h-3 w-3 text-green-500" />
+                              {status.score} XP
+                            </div>
+                          )}
+                        </div>
+
+                        <Link
+                          href={`/exercise/${exercise.id}`}
+                          className="mt-auto"
+                        >
                           <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base ${
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
                               status.completed
                                 ? "bg-green-100 text-green-700 hover:bg-green-200"
                                 : "bg-blue-600 text-white hover:bg-blue-700"
                             }`}
                           >
-                            <PlayCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                            <span className="hidden xs:inline">
+                            <PlayCircle className="h-4 w-4" />
+                            <span>
                               {status.completed ? "Ulangi" : "Mulai Latihan"}
                             </span>
-                            <span className="xs:hidden">
-                              {status.completed ? "Ulang" : "Mulai"}
-                            </span>
-                            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <ChevronRight className="h-4 w-4" />
                           </motion.button>
                         </Link>
                       </div>
