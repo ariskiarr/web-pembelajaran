@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { userProgressManager } from "@/utils/userProgress";
+import { useWelcomeModal } from "@/hooks/useWelcomeModal";
+import WelcomeModal from "@/components/WelcomeModal";
+import WelcomeSequence from "@/components/WelcomeSequence";
 import {
   BookOpen,
   Trophy,
@@ -23,6 +26,10 @@ export default function HomePage() {
     level: 1,
     percentage: 0,
   });
+
+  // Welcome modal hook
+  const { showSequence, showWelcome, handleSequenceComplete, closeWelcome } =
+    useWelcomeModal();
 
   useEffect(() => {
     const progressData = userProgressManager.getOverallProgress();
@@ -152,7 +159,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-4">
-            Platform pembelajaran Python yang memungkinkan Anda menulis,
+            Platform pembelajaran Python yang memungkinkan kamu menulis,
             menjalankan, dan mempelajari kode Python langsung di browser tanpa
             instalasi apapun.
           </p>
@@ -192,7 +199,7 @@ export default function HomePage() {
           >
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
               <Trophy className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-500" />
-              Progress Pembelajaran Anda
+              Progress Pembelajaran Kamu
             </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
@@ -347,7 +354,7 @@ export default function HomePage() {
           className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-center text-white"
         >
           <h2 className="text-3xl font-bold mb-4">
-            Siap Memulai Perjalanan Python Anda?
+            Siap Memulai Perjalanan Python Kamu?
           </h2>
           <p className="text-lg mb-8 text-blue-100">
             Bergabunglah dengan ribuan pembelajar lain yang sudah memulai
@@ -367,6 +374,15 @@ export default function HomePage() {
           </div>
         </motion.div>
       </div>
+
+      {/* Welcome Sequence */}
+      <WelcomeSequence
+        isOpen={showSequence}
+        onComplete={handleSequenceComplete}
+      />
+
+      {/* Welcome Modal */}
+      <WelcomeModal isOpen={showWelcome} onClose={closeWelcome} />
     </div>
   );
 }

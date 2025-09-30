@@ -16,10 +16,10 @@ export const exercises: Exercise[] = [
     id: "1",
     title: "Hello World",
     description:
-      "Tulis program Python pertama Anda yang mencetak 'Hello, World!'",
+      "Tulis program Python pertama kamu yang mencetak 'Hello, World!'",
     difficulty: "beginner",
     category: "Dasar",
-    initialCode: "# Tulis kode Anda di sini\n",
+    initialCode: "# Tulis kode kamu di sini\n",
     expectedOutput: "Hello, World!",
     hints: [
       "Gunakan fungsi print() untuk mencetak teks",

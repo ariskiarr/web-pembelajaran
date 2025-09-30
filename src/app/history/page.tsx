@@ -29,7 +29,7 @@ export default function HistoryPage() {
                 <span className="truncate">Riwayat Belajar</span>
               </h1>
               <p className="text-xs sm:text-base text-gray-600 mt-1 hidden sm:block">
-                Lihat progress dan riwayat latihan Anda
+                Lihat progress dan riwayat latihan kamu
               </p>
             </div>
           </div>

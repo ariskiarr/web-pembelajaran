@@ -168,7 +168,7 @@ alert(pesan);                               // Output`,
     ],
     nextSteps: [
       "Pahami perbedaan antara compiler dan interpreter",
-      "Pilih bahasa pemrograman yang sesuai dengan tujuan Anda",
+      "Pilih bahasa pemrograman yang sesuai dengan tujuan kamu",
       "Pelajari sintaks dasar dari bahasa yang dipilih",
       "Praktikkan konsep Input-Process-Output dengan program sederhana",
       "Mulai dengan bahasa tingkat tinggi seperti Python untuk pemula",
@@ -324,7 +324,7 @@ Python punya filosofi desain yang disebut "The Zen of Python". Beberapa prinsipn
 
 ## Kesimpulan
 
-Python adalah bahasa pemrograman yang sempurna untuk pemula karena mudah dipelajari, sangat berguna, dan memiliki prospek karir yang cerah. Dengan komunitas yang besar dan library yang melimpah, Python memungkinkan Anda untuk membuat hampir semua jenis aplikasi yang Anda bayangkan.
+Python adalah bahasa pemrograman yang sempurna untuk pemula karena mudah dipelajari, sangat berguna, dan memiliki prospek karir yang cerah. Dengan komunitas yang besar dan library yang melimpah, Python memungkinkan kamu untuk membuat hampir semua jenis aplikasi yang kamu bayangkan.
 
 Jangan takut untuk memulai! Setiap programmer profesional juga pernah menjadi pemula. Yang penting adalah konsistensi dalam belajar dan praktek.
 
@@ -332,7 +332,7 @@ Jangan takut untuk memulai! Setiap programmer profesional juga pernah menjadi pe
 
 *"Tidak ada yang tidak bisa selama kamu ingin mencoba"* - Ariski
 
-**Selamat memulai perjalanan belajar Python Anda! Semangat yaahhh!**
+**Selamat memulai perjalanan belajar Python kamu! Semangat yaahhh!**
     `,
     codeExample: `# Belajar Perintah Print di Python
 
@@ -372,10 +372,10 @@ print("Python", "itu", "mudah", sep=" ")
       "Memiliki komunitas besar dan library yang melimpah",
     ],
     nextSteps: [
-      "Install Python 3 di komputer Anda",
+      "Install Python 3 di komputer kamu",
       "Pelajari cara menjalankan program Python pertama",
       "Pahami sintaks dasar Python (variabel, input, output)",
-      "Eksplorasi library populer sesuai minat Anda",
+      "Eksplorasi library populer sesuai minat kamu",
       "Bergabung dengan komunitas Python Indonesia",
     ],
     relatedExercises: ["1"],
@@ -444,7 +444,7 @@ print("Selamat datang di dunia Python!")
     content: `
 # Variabel dan Tipe Data
 
-Variabel adalah tempat untuk menyimpan data. Di Python, Anda tidak perlu mendeklarasikan tipe data secara eksplisit.
+Variabel adalah tempat untuk menyimpan data. Di Python, kamu tidak perlu mendeklarasikan tipe data secara eksplisit.
 
 ## Membuat Variabel
 
