@@ -39,6 +39,35 @@ export default function MaterialsPage() {
     Record<string, { completed: boolean; attempts: number; score: number }>
   >({});
   const [completedMaterials, setCompletedMaterials] = useState<string[]>([]);
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
+
+  // Daftar materi yang bisa diakses
+  const accessibleMaterials = ["programming-history", "python-history"];
+
+  // Daftar latihan yang bisa diakses
+  const accessibleExercises = ["1"]; // Hanya Hello World (exercise id: "1")
+
+  // Fungsi untuk menangani klik material
+  const handleMaterialClick = (materialId: string) => {
+    if (accessibleMaterials.includes(materialId)) {
+      // Jika materi bisa diakses, buka halaman material
+      window.location.href = `/material/${materialId}`;
+    } else {
+      // Jika tidak, tampilkan popup
+      setShowComingSoonModal(true);
+    }
+  };
+
+  // Fungsi untuk menangani klik exercise
+  const handleExerciseClick = (exerciseId: string) => {
+    if (accessibleExercises.includes(exerciseId)) {
+      // Jika latihan bisa diakses, buka halaman exercise
+      window.location.href = `/exercise/${exerciseId}`;
+    } else {
+      // Jika tidak, tampilkan popup
+      setShowComingSoonModal(true);
+    }
+  };
 
   useEffect(() => {
     const progressData = userProgressManager.getOverallProgress();
@@ -614,26 +643,20 @@ export default function MaterialsPage() {
                           )}
                         </div>
 
-                        <Link
-                          href={`/material/${material.id}`}
-                          className="mt-auto"
+                        <motion.button
+                          onClick={() => handleMaterialClick(material.id)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`mt-auto w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
+                            isCompleted
+                              ? "bg-green-100 text-green-700 hover:bg-green-200"
+                              : "bg-blue-600 text-white hover:bg-blue-700"
+                          }`}
                         >
-                          <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className={`w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
-                              isCompleted
-                                ? "bg-green-100 text-green-700 hover:bg-green-200"
-                                : "bg-blue-600 text-white hover:bg-blue-700"
-                            }`}
-                          >
-                            <Book className="h-4 w-4" />
-                            <span>
-                              {isCompleted ? "Baca Ulang" : "Pelajari"}
-                            </span>
-                            <ChevronRight className="h-4 w-4" />
-                          </motion.button>
-                        </Link>
+                          <Book className="h-4 w-4" />
+                          <span>{isCompleted ? "Baca Ulang" : "Pelajari"}</span>
+                          <ChevronRight className="h-4 w-4" />
+                        </motion.button>
                       </div>
                     </div>
                   </motion.div>
@@ -727,26 +750,22 @@ export default function MaterialsPage() {
                           )}
                         </div>
 
-                        <Link
-                          href={`/exercise/${exercise.id}`}
-                          className="mt-auto"
+                        <motion.button
+                          onClick={() => handleExerciseClick(exercise.id)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`mt-auto w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
+                            status.completed
+                              ? "bg-green-100 text-green-700 hover:bg-green-200"
+                              : "bg-blue-600 text-white hover:bg-blue-700"
+                          }`}
                         >
-                          <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className={`w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
-                              status.completed
-                                ? "bg-green-100 text-green-700 hover:bg-green-200"
-                                : "bg-blue-600 text-white hover:bg-blue-700"
-                            }`}
-                          >
-                            <PlayCircle className="h-4 w-4" />
-                            <span>
-                              {status.completed ? "Ulangi" : "Mulai Latihan"}
-                            </span>
-                            <ChevronRight className="h-4 w-4" />
-                          </motion.button>
-                        </Link>
+                          <PlayCircle className="h-4 w-4" />
+                          <span>
+                            {status.completed ? "Ulangi" : "Mulai Latihan"}
+                          </span>
+                          <ChevronRight className="h-4 w-4" />
+                        </motion.button>
                       </div>
                     </div>
                   </motion.div>
@@ -794,6 +813,38 @@ export default function MaterialsPage() {
           </div>
         </motion.div>
       </div>
+
+      {/* Modal Coming Soon */}
+      {showComingSoonModal && (
+        <div className="fixed inset-0 bg-gray-900/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full mx-4 text-center"
+          >
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Clock className="w-8 h-8 text-yellow-600" />
+            </div>
+
+            <h3 className="text-xl font-bold text-gray-900 mb-3">
+              Materi Sedang Dalam Proses
+            </h3>
+
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              Materi ini sedang dalam tahap pengembangan. Mohon coba lagi nanti
+              atau pelajari materi lain yang sudah tersedia.
+            </p>
+
+            <button
+              onClick={() => setShowComingSoonModal(false)}
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Mengerti
+            </button>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

@@ -219,7 +219,10 @@ export default function MaterialPage() {
       // Regular paragraphs
       if (line.trim()) {
         return (
-          <p key={index} className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
+          <p
+            key={index}
+            className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4"
+          >
             {formatTextWithMarkdown(line)}
           </p>
         );
@@ -250,7 +253,9 @@ export default function MaterialPage() {
                 <h1 className="text-sm sm:text-lg font-semibold text-gray-900 truncate">
                   {material.title}
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-500 truncate hidden xs:block">{material.category}</p>
+                <p className="text-xs sm:text-sm text-gray-500 truncate hidden xs:block">
+                  {material.category}
+                </p>
               </div>
             </div>
 
@@ -311,7 +316,9 @@ export default function MaterialPage() {
                     <BookOpen className="w-5 h-5 text-blue-600" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-gray-900">Detail Materi</h2>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Detail Materi
+                    </h2>
                     <p className="text-sm text-gray-500">{material.category}</p>
                   </div>
                 </div>
@@ -319,8 +326,18 @@ export default function MaterialPage() {
                   onClick={() => setIsSidebarOpen(false)}
                   className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -340,7 +357,9 @@ export default function MaterialPage() {
                           <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                             <Target className="w-4 h-4 text-blue-600" />
                           </div>
-                          <h4 className="font-semibold text-gray-900">Key Points</h4>
+                          <h4 className="font-semibold text-gray-900">
+                            Key Points
+                          </h4>
                         </div>
                         <p className="text-sm text-gray-600 ml-11">
                           {material.keyPoints.length} konsep penting
@@ -352,7 +371,9 @@ export default function MaterialPage() {
                           <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                             <Code className="w-4 h-4 text-green-600" />
                           </div>
-                          <h4 className="font-semibold text-gray-900">Practice</h4>
+                          <h4 className="font-semibold text-gray-900">
+                            Practice
+                          </h4>
                         </div>
                         <p className="text-sm text-gray-600 ml-11">
                           {relatedExercises.length} latihan tersedia
@@ -368,7 +389,10 @@ export default function MaterialPage() {
                     </h3>
                     <div className="space-y-3">
                       {material.keyPoints.map((point, index) => (
-                        <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                        <div
+                          key={index}
+                          className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg"
+                        >
                           <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-semibold">
                             {index + 1}
                           </div>
@@ -387,7 +411,10 @@ export default function MaterialPage() {
                     </h3>
                     <div className="space-y-2">
                       {material.nextSteps.map((step, index) => (
-                        <div key={index} className="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg">
+                        <div
+                          key={index}
+                          className="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg"
+                        >
                           <div className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-semibold">
                             {index + 1}
                           </div>
@@ -409,7 +436,9 @@ export default function MaterialPage() {
                         {relatedExercises.map((exercise) => (
                           <button
                             key={exercise.id}
-                            onClick={() => router.push(`/exercise/${exercise.id}`)}
+                            onClick={() =>
+                              router.push(`/exercise/${exercise.id}`)
+                            }
                             className="w-full text-left p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 hover:from-blue-100 hover:to-purple-100 rounded-xl transition-all duration-200 group"
                           >
                             <div className="flex items-center justify-between">
