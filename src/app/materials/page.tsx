@@ -39,7 +39,6 @@ export default function MaterialsPage() {
     Record<string, { completed: boolean; attempts: number; score: number }>
   >({});
   const [completedMaterials, setCompletedMaterials] = useState<string[]>([]);
-  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
 
   // Daftar materi yang bisa diakses
   const accessibleMaterials = ["programming-history", "python-history"];
@@ -52,10 +51,8 @@ export default function MaterialsPage() {
     if (accessibleMaterials.includes(materialId)) {
       // Jika materi bisa diakses, buka halaman material
       window.location.href = `/material/${materialId}`;
-    } else {
-      // Jika tidak, tampilkan popup
-      setShowComingSoonModal(true);
     }
+    // Jika tidak bisa diakses, tidak melakukan apa-apa (button sudah disabled)
   };
 
   // Fungsi untuk menangani klik exercise
@@ -63,10 +60,8 @@ export default function MaterialsPage() {
     if (accessibleExercises.includes(exerciseId)) {
       // Jika latihan bisa diakses, buka halaman exercise
       window.location.href = `/exercise/${exerciseId}`;
-    } else {
-      // Jika tidak, tampilkan popup
-      setShowComingSoonModal(true);
     }
+    // Jika tidak bisa diakses, tidak melakukan apa-apa (button sudah disabled)
   };
 
   useEffect(() => {
@@ -582,6 +577,7 @@ export default function MaterialsPage() {
             <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredMaterials.map((material, index) => {
                 const isCompleted = completedMaterials.includes(material.id);
+                const isAccessible = accessibleMaterials.includes(material.id);
 
                 return (
                   <motion.div
@@ -589,7 +585,7 @@ export default function MaterialsPage() {
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     whileHover={{
-                      y: -4,
+                      y: isAccessible ? -4 : 0,
                       transition: { duration: 0.3, ease: "easeOut" },
                     }}
                     transition={{
@@ -597,14 +593,44 @@ export default function MaterialsPage() {
                       duration: 0.6,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
-                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
+                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-500 ease-out overflow-hidden relative ${
                       isCompleted ? "ring-2 ring-green-500 ring-opacity-50" : ""
+                    } ${
+                      !isAccessible
+                        ? "opacity-75 cursor-not-allowed bg-gray-50"
+                        : "hover:shadow-2xl cursor-pointer"
                     }`}
                   >
+                    {/* Overlay untuk materi yang tidak dapat diakses */}
+                    {!isAccessible && (
+                      <div className="absolute inset-0 bg-gray-900/10 z-10 flex items-center justify-center">
+                        <div className="bg-gray-800/80 text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          Coming Soon
+                        </div>
+                      </div>
+                    )}
+
                     <div className="p-4 sm:p-6">
                       <div className="flex flex-col">
                         <div className="flex flex-wrap items-center gap-2 mb-3">
-                          <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              isAccessible
+                                ? "bg-blue-100 text-blue-800"
+                                : "bg-gray-100 text-gray-600"
+                            }`}
+                          >
                             {material.category}
                           </span>
                           {isCompleted && (
@@ -615,16 +641,36 @@ export default function MaterialsPage() {
                               </span>
                             </div>
                           )}
+                          {!isAccessible && (
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-4 w-4 text-gray-500" />
+                              <span className="text-xs text-gray-500 font-medium">
+                                Segera Hadir
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                        <h3
+                          className={`text-base sm:text-lg font-bold mb-2 line-clamp-2 ${
+                            isAccessible ? "text-gray-900" : "text-gray-600"
+                          }`}
+                        >
                           {material.title}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                        <p
+                          className={`text-sm mb-4 line-clamp-2 ${
+                            isAccessible ? "text-gray-600" : "text-gray-500"
+                          }`}
+                        >
                           {material.description}
                         </p>
 
-                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                        <div
+                          className={`flex flex-wrap items-center gap-3 text-xs mb-4 ${
+                            isAccessible ? "text-gray-500" : "text-gray-400"
+                          }`}
+                        >
                           <div className="flex items-center gap-1">
                             <FileText className="h-3 w-3" />
                             <span className="hidden xs:inline">Materi </span>
@@ -645,17 +691,26 @@ export default function MaterialsPage() {
 
                         <motion.button
                           onClick={() => handleMaterialClick(material.id)}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: isAccessible ? 1.02 : 1 }}
+                          whileTap={{ scale: isAccessible ? 0.98 : 1 }}
+                          disabled={!isAccessible}
                           className={`mt-auto w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
-                            isCompleted
+                            !isAccessible
+                              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                              : isCompleted
                               ? "bg-green-100 text-green-700 hover:bg-green-200"
                               : "bg-blue-600 text-white hover:bg-blue-700"
                           }`}
                         >
                           <Book className="h-4 w-4" />
-                          <span>{isCompleted ? "Baca Ulang" : "Pelajari"}</span>
-                          <ChevronRight className="h-4 w-4" />
+                          <span>
+                            {!isAccessible
+                              ? "Segera Hadir"
+                              : isCompleted
+                              ? "Baca Ulang"
+                              : "Pelajari"}
+                          </span>
+                          {isAccessible && <ChevronRight className="h-4 w-4" />}
                         </motion.button>
                       </div>
                     </div>
@@ -672,6 +727,7 @@ export default function MaterialsPage() {
                   attempts: 0,
                   score: 0,
                 };
+                const isAccessible = accessibleExercises.includes(exercise.id);
 
                 return (
                   <motion.div
@@ -679,7 +735,7 @@ export default function MaterialsPage() {
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     whileHover={{
-                      y: -4,
+                      y: isAccessible ? -4 : 0,
                       transition: { duration: 0.3, ease: "easeOut" },
                     }}
                     transition={{
@@ -687,29 +743,65 @@ export default function MaterialsPage() {
                       duration: 0.6,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
-                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out overflow-hidden ${
+                    className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-500 ease-out overflow-hidden relative ${
                       status.completed
                         ? "ring-2 ring-green-500 ring-opacity-50"
                         : ""
+                    } ${
+                      !isAccessible
+                        ? "opacity-75 cursor-not-allowed bg-gray-50"
+                        : "hover:shadow-2xl cursor-pointer"
                     }`}
                   >
+                    {/* Overlay untuk exercise yang tidak dapat diakses */}
+                    {!isAccessible && (
+                      <div className="absolute inset-0 bg-gray-900/10 z-10 flex items-center justify-center">
+                        <div className="bg-gray-800/80 text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
+                          <svg
+                            className="w-4 h-4"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          Coming Soon
+                        </div>
+                      </div>
+                    )}
+
                     <div className="p-4 sm:p-6">
                       <div className="flex flex-col">
                         <div className="flex flex-wrap items-center gap-2 mb-3">
-                          <span className="text-xs font-medium text-gray-500">
+                          <span
+                            className={`text-xs font-medium ${
+                              isAccessible ? "text-gray-500" : "text-gray-400"
+                            }`}
+                          >
                             #{exercise.id}
                           </span>
                           <span
-                            className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
-                              exercise.difficulty
-                            )}`}
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              isAccessible
+                                ? getDifficultyColor(exercise.difficulty)
+                                : "bg-gray-100 text-gray-500"
+                            }`}
                           >
                             {getDifficultyText(exercise.difficulty)}
                           </span>
-                          <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              isAccessible
+                                ? "bg-blue-100 text-blue-800"
+                                : "bg-gray-100 text-gray-600"
+                            }`}
+                          >
                             {exercise.category}
                           </span>
-                          {status.completed && (
+                          {status.completed && isAccessible && (
                             <div className="flex items-center gap-1">
                               <Trophy className="h-4 w-4 text-green-500" />
                               <span className="text-xs text-green-600 font-medium">
@@ -717,21 +809,41 @@ export default function MaterialsPage() {
                               </span>
                             </div>
                           )}
+                          {!isAccessible && (
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-4 w-4 text-gray-500" />
+                              <span className="text-xs text-gray-500 font-medium">
+                                Segera Hadir
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                        <h3
+                          className={`text-base sm:text-lg font-bold mb-2 line-clamp-2 ${
+                            isAccessible ? "text-gray-900" : "text-gray-600"
+                          }`}
+                        >
                           {exercise.title}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                        <p
+                          className={`text-sm mb-4 line-clamp-2 ${
+                            isAccessible ? "text-gray-600" : "text-gray-500"
+                          }`}
+                        >
                           {exercise.description}
                         </p>
 
-                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
+                        <div
+                          className={`flex flex-wrap items-center gap-3 text-xs mb-4 ${
+                            isAccessible ? "text-gray-500" : "text-gray-400"
+                          }`}
+                        >
                           <div className="flex items-center gap-1">
                             <Star className="h-3 w-3" />
                             {exercise.points} XP
                           </div>
-                          {status.attempts > 0 && (
+                          {status.attempts > 0 && isAccessible && (
                             <div className="flex items-center gap-1">
                               <Clock className="h-3 w-3" />
                               <span className="hidden xs:inline">
@@ -742,7 +854,7 @@ export default function MaterialsPage() {
                               </span>
                             </div>
                           )}
-                          {status.completed && (
+                          {status.completed && isAccessible && (
                             <div className="flex items-center gap-1">
                               <Target className="h-3 w-3 text-green-500" />
                               {status.score} XP
@@ -752,19 +864,26 @@ export default function MaterialsPage() {
 
                         <motion.button
                           onClick={() => handleExerciseClick(exercise.id)}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: isAccessible ? 1.02 : 1 }}
+                          whileTap={{ scale: isAccessible ? 0.98 : 1 }}
+                          disabled={!isAccessible}
                           className={`mt-auto w-full px-4 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors text-sm ${
-                            status.completed
+                            !isAccessible
+                              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                              : status.completed
                               ? "bg-green-100 text-green-700 hover:bg-green-200"
                               : "bg-blue-600 text-white hover:bg-blue-700"
                           }`}
                         >
                           <PlayCircle className="h-4 w-4" />
                           <span>
-                            {status.completed ? "Ulangi" : "Mulai Latihan"}
+                            {!isAccessible
+                              ? "Segera Hadir"
+                              : status.completed
+                              ? "Ulangi"
+                              : "Mulai Latihan"}
                           </span>
-                          <ChevronRight className="h-4 w-4" />
+                          {isAccessible && <ChevronRight className="h-4 w-4" />}
                         </motion.button>
                       </div>
                     </div>
@@ -813,38 +932,6 @@ export default function MaterialsPage() {
           </div>
         </motion.div>
       </div>
-
-      {/* Modal Coming Soon */}
-      {showComingSoonModal && (
-        <div className="fixed inset-0 bg-gray-900/30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full mx-4 text-center"
-          >
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Clock className="w-8 h-8 text-yellow-600" />
-            </div>
-
-            <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Materi Sedang Dalam Proses
-            </h3>
-
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Materi ini sedang dalam tahap pengembangan. Mohon coba lagi nanti
-              atau pelajari materi lain yang sudah tersedia.
-            </p>
-
-            <button
-              onClick={() => setShowComingSoonModal(false)}
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Mengerti
-            </button>
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 }
