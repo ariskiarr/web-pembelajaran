@@ -16,16 +16,20 @@ export const exercises: Exercise[] = [
     id: "1",
     title: "Hello World",
     description:
-      "Tulis program Python pertama kamu yang mencetak 'Hello, World!'",
+      "Tulis program Python pertama kamu yang mencetak 'Hello, World!' dan berikan komentar mengapa kamu tertarik belajar Python",
     difficulty: "beginner",
     category: "Dasar",
-    initialCode: "# Tulis kode kamu di sini\n",
+    initialCode:
+      "# Tulis komentar di sini: Mengapa kamu tertarik belajar Python?\n# \n\n# Tulis kode kamu di sini untuk mencetak 'Hello, World!'\n",
     expectedOutput: "Hello, World!",
     hints: [
       "Gunakan fungsi print() untuk mencetak teks",
       "Jangan lupa menggunakan tanda petik untuk string",
+      "Berikan komentar dengan tanda # tentang alasan kamu belajar Python",
+      "Komentar tidak akan mempengaruhi output program",
     ],
-    solution: "print('Hello, World!')",
+    solution:
+      "# Saya tertarik belajar Python karena mudah dipahami dan banyak digunakan\n# untuk berbagai bidang seperti AI, data science, dan web development\n\nprint('Hello, World!')",
     points: 10,
   },
   {

@@ -41,7 +41,11 @@ export default function MaterialsPage() {
   const [completedMaterials, setCompletedMaterials] = useState<string[]>([]);
 
   // Daftar materi yang bisa diakses
-  const accessibleMaterials = ["programming-history", "python-history"];
+  const accessibleMaterials = [
+    "programming-history",
+    "python-history",
+    "python-basics",
+  ];
 
   // Daftar latihan yang bisa diakses
   const accessibleExercises = ["1"]; // Hanya Hello World (exercise id: "1")
