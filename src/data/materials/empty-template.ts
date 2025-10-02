@@ -59,14 +59,14 @@ salam()`,
     "Ganti semua bagian template dengan materi yang sesuai",
     "Pastikan struktur markdown konsisten",
     "Sertakan contoh kode yang relevan",
-    "Tambahkan tips dan catatan penting"
+    "Tambahkan tips dan catatan penting",
   ],
   nextSteps: [
     "Ganti title dan id dengan yang sesuai",
     "Isi content dengan materi pembelajaran",
     "Tambahkan contoh kode yang relevan",
     "Lengkapi keyPoints dan nextSteps",
-    "Hubungkan dengan exercises terkait"
+    "Hubungkan dengan exercises terkait",
   ],
-  relatedExercises: []
+  relatedExercises: [],
 };

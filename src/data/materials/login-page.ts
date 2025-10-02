@@ -28,15 +28,15 @@ else:
     print("Username atau password salah!")`,
   keyPoints: [
     "Login diperlukan untuk akses sistem",
-    "Username: lutvianurjannah", 
+    "Username: lutvianurjannah",
     "Password sudah ditentukan sistem",
-    "Autentikasi otomatis setelah input benar"
+    "Autentikasi otomatis setelah input benar",
   ],
   nextSteps: [
     "Masukkan username yang benar",
-    "Masukkan password yang benar", 
+    "Masukkan password yang benar",
     "Akses sistem pembelajaran",
-    "Mulai belajar Python"
+    "Mulai belajar Python",
   ],
-  relatedExercises: []
+  relatedExercises: [],
 };

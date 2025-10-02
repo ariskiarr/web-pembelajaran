@@ -16,7 +16,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const correctUsername = "lutvianurjannah";
-  const correctPassword = "GqRwEw$EwE98";
+  const correctPassword = "GqRwEw$EwE";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
     setError("");
 
     // Simulate loading for better UX
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (username === correctUsername && password === correctPassword) {
       // Save login status to localStorage
@@ -109,7 +109,11 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white/70"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
           </motion.div>

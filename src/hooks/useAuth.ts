@@ -10,13 +10,13 @@ export function useAuth() {
     // Check if user is already logged in
     const loginStatus = localStorage.getItem("isLoggedIn");
     const loginTime = localStorage.getItem("loginTime");
-    
+
     if (loginStatus === "true" && loginTime) {
       // Check if login is still valid (24 hours)
       const loginTimestamp = parseInt(loginTime);
       const now = Date.now();
       const twentyFourHours = 24 * 60 * 60 * 1000;
-      
+
       if (now - loginTimestamp < twentyFourHours) {
         setIsLoggedIn(true);
       } else {
@@ -26,7 +26,7 @@ export function useAuth() {
         setIsLoggedIn(false);
       }
     }
-    
+
     setIsLoading(false);
   }, []);
 
@@ -46,6 +46,6 @@ export function useAuth() {
     isLoggedIn,
     isLoading,
     login,
-    logout
+    logout,
   };
 }
