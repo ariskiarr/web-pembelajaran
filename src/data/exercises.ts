@@ -205,6 +205,92 @@ export const exercises: Exercise[] = [
       "def safe_int_convert(value):\n    try:\n        return int(value)\n    except ValueError:\n        print(f\"Error: Cannot convert '{value}' to integer\")\n        return 0\n\n# Test function\ntest_values = ['123', 'abc', '45.67']\nfor value in test_values:\n    result = safe_int_convert(value)\n    print(f\"Input: '{value}' -> Output: {result}\")",
     points: 45,
   },
+  {
+    id: "11",
+    title: "Kalkulator Sederhana",
+    description:
+      "Buat kalkulator sederhana yang dapat melakukan operasi matematika dasar",
+    difficulty: "beginner",
+    category: "Dasar",
+    initialCode:
+      "# Buat kalkulator sederhana\n# Minta user memasukkan dua angka\n# Tampilkan hasil operasi: +, -, *, /, //, %, **\n\n# Contoh output:\n# Angka pertama: 10\n# Angka kedua: 3\n# Penjumlahan: 10 + 3 = 13\n# dst...\n",
+    expectedOutput:
+      "Penjumlahan: 10 + 3 = 13\nPengurangan: 10 - 3 = 7\nPerkalian: 10 * 3 = 30\nPembagian: 10 / 3 = 3.333...\nPembagian bulat: 10 // 3 = 3\nModulus: 10 % 3 = 1\nPangkat: 10 ** 3 = 1000",
+    hints: [
+      "Gunakan input() untuk mengambil data dari user",
+      "Konversi string ke number menggunakan float() atau int()",
+      "Gunakan f-string untuk format output yang rapi",
+      "Jangan lupa semua operator matematika: +, -, *, /, //, %, **",
+    ],
+    solution:
+      '# Input dari user\nangka1 = float(input("Masukkan angka pertama: "))\nangka2 = float(input("Masukkan angka kedua: "))\n\n# Operasi matematika\nprint(f"Penjumlahan: {angka1} + {angka2} = {angka1 + angka2}")\nprint(f"Pengurangan: {angka1} - {angka2} = {angka1 - angka2}")\nprint(f"Perkalian: {angka1} * {angka2} = {angka1 * angka2}")\nprint(f"Pembagian: {angka1} / {angka2} = {angka1 / angka2}")\nprint(f"Pembagian bulat: {angka1} // {angka2} = {angka1 // angka2}")\nprint(f"Modulus: {angka1} % {angka2} = {angka1 % angka2}")\nprint(f"Pangkat: {angka1} ** {angka2} = {angka1 ** angka2}")',
+    points: 15,
+  },
+  {
+    id: "12",
+    title: "Program Biodata Interaktif",
+    description:
+      "Buat program yang meminta biodata user dan menampilkannya dengan format yang rapi",
+    difficulty: "beginner",
+    category: "Dasar",
+    initialCode:
+      "# Program biodata interaktif\n# Minta user memasukkan:\n# - Nama lengkap\n# - Umur\n# - Tinggi badan (cm)\n# - Berat badan (kg)\n# - Apakah mahasiswa (ya/tidak)\n\n# Tampilkan dalam format yang rapi dan hitung BMI\n",
+    expectedOutput:
+      "=== BIODATA LENGKAP ===\nNama: Ahmad Fauzi\nUmur: 20 tahun\nTinggi: 170 cm\nBerat: 65 kg\nStatus: Mahasiswa\nBMI: 22.49 (Normal)",
+    hints: [
+      "Gunakan input() untuk setiap data yang diminta",
+      "Konversi umur ke int(), tinggi dan berat ke float()",
+      "BMI = berat / (tinggi_meter ** 2)",
+      "Tinggi dalam meter = tinggi_cm / 100",
+      "Gunakan f-string untuk format output yang rapi",
+      "Tambahkan logika untuk status mahasiswa",
+    ],
+    solution:
+      '# Input biodata dari user\nnama = input("Masukkan nama lengkap: ")\numur = int(input("Masukkan umur: "))\ntinggi_cm = float(input("Masukkan tinggi badan (cm): "))\nberat = float(input("Masukkan berat badan (kg): "))\nmahasiswa = input("Apakah kamu mahasiswa? (ya/tidak): ")\n\n# Konversi tinggi ke meter untuk hitung BMI\ntinggi_m = tinggi_cm / 100\nbmi = berat / (tinggi_m ** 2)\n\n# Tentukan status BMI\nif bmi < 18.5:\n    status_bmi = "Kurus"\nelif bmi < 25:\n    status_bmi = "Normal"\nelif bmi < 30:\n    status_bmi = "Gemuk"\nelse:\n    status_bmi = "Obesitas"\n\n# Tentukan status mahasiswa\nstatus = "Mahasiswa" if mahasiswa.lower() == "ya" else "Bukan Mahasiswa"\n\n# Tampilkan biodata\nprint("\\n=== BIODATA LENGKAP ===")\nprint(f"Nama: {nama}")\nprint(f"Umur: {umur} tahun")\nprint(f"Tinggi: {tinggi_cm} cm")\nprint(f"Berat: {berat} kg")\nprint(f"Status: {status}")\nprint(f"BMI: {bmi:.2f} ({status_bmi})")',
+    points: 20,
+  },
+  {
+    id: "13",
+    title: "Basic Error Handling",
+    description:
+      "Buat program yang aman untuk konversi input user menjadi angka dengan error handling",
+    difficulty: "intermediate",
+    category: "Advanced",
+    initialCode:
+      '# Buat fungsi safe_input yang:\n# 1. Meminta input dari user\n# 2. Mencoba konversi ke int\n# 3. Handle error jika input bukan angka\n# 4. Berikan pesan error yang informatif\n# 5. Return None jika konversi gagal\n\ndef safe_input(prompt):\n    # Tulis kode di sini\n    pass\n\n# Test fungsi\nresult = safe_input("Masukkan angka: ")\nif result is not None:\n    print(f"Angka yang dimasukkan: {result}")\nelse:\n    print("Input tidak valid")',
+    expectedOutput:
+      "Masukkan angka: abc\nError: Input 'abc' bukan angka valid!\nInput tidak valid",
+    hints: [
+      "Gunakan try-except untuk handle ValueError",
+      "int() akan raise ValueError jika input bukan angka",
+      "Return None jika konversi gagal",
+      "Berikan pesan error yang informatif",
+    ],
+    solution:
+      'def safe_input(prompt):\n    try:\n        user_input = input(prompt)\n        number = int(user_input)\n        return number\n    except ValueError:\n        print(f"Error: Input \'{user_input}\' bukan angka valid!")\n        return None\n\n# Test fungsi\nresult = safe_input("Masukkan angka: ")\nif result is not None:\n    print(f"Angka yang dimasukkan: {result}")\nelse:\n    print("Input tidak valid")',
+    points: 30,
+  },
+  {
+    id: "14",
+    title: "Calculator dengan Error Handling",
+    description:
+      "Buat kalkulator yang aman dengan error handling untuk berbagai jenis error",
+    difficulty: "intermediate",
+    category: "Advanced",
+    initialCode:
+      '# Buat kalkulator aman yang handle:\n# 1. ValueError - input bukan angka\n# 2. ZeroDivisionError - pembagian dengan nol\n# 3. Invalid operator\n\ndef safe_calculator():\n    try:\n        # Ambil input\n        num1 = float(input("Angka pertama: "))\n        operator = input("Operator (+, -, *, /): ")\n        num2 = float(input("Angka kedua: "))\n        \n        # Tulis kode operasi di sini\n        \n    except:\n        # Handle berbagai jenis error\n        pass\n\nsafe_calculator()',
+    expectedOutput:
+      "Angka pertama: 10\nOperator (+, -, *, /): /\nAngka kedua: 0\nError: Tidak bisa membagi dengan nol!",
+    hints: [
+      "Gunakan multiple except blocks untuk different error types",
+      "Check operator validity sebelum operasi",
+      "ZeroDivisionError untuk pembagian dengan nol",
+      "ValueError untuk input non-numeric",
+    ],
+    solution:
+      'def safe_calculator():\n    try:\n        # Ambil input\n        num1 = float(input("Angka pertama: "))\n        operator = input("Operator (+, -, *, /): ")\n        num2 = float(input("Angka kedua: "))\n        \n        # Validasi operator\n        if operator not in [\'+\', \'-\', \'*\', \'/\']:\n            raise ValueError(f"Operator \'{operator}\' tidak valid")\n        \n        # Operasi matematika\n        if operator == \'+\':\n            result = num1 + num2\n        elif operator == \'-\':\n            result = num1 - num2\n        elif operator == \'*\':\n            result = num1 * num2\n        elif operator == \'/\':\n            result = num1 / num2\n        \n        print(f"Hasil: {num1} {operator} {num2} = {result}")\n        \n    except ValueError as e:\n        if "could not convert" in str(e):\n            print("Error: Input harus berupa angka!")\n        else:\n            print(f"Error: {e}")\n    except ZeroDivisionError:\n        print("Error: Tidak bisa membagi dengan nol!")\n    except Exception as e:\n        print(f"Error tidak terduga: {e}")\n\nsafe_calculator()',
+    points: 40,
+  },
 ];
 
 export const categories = [

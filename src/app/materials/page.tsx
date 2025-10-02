@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { exercises, categories } from "@/data/exercises";
-import { materials, materialCategories } from "@/data/materials";
+import { materials, materialCategories } from "@/data/index";
 import { userProgressManager } from "@/utils/userProgress";
 import {
   BookOpen,
@@ -43,12 +43,13 @@ export default function MaterialsPage() {
   // Daftar materi yang bisa diakses
   const accessibleMaterials = [
     "programming-history",
-    "python-history",
+    "python-intro",
     "python-basics",
+    "variables-datatypes",
   ];
 
   // Daftar latihan yang bisa diakses
-  const accessibleExercises = ["1"]; // Hanya Hello World (exercise id: "1")
+  const accessibleExercises = ["1", "2", "11", "12"]; // Hello World, Variabel, Kalkulator, Biodata
 
   // Fungsi untuk menangani klik material
   const handleMaterialClick = (materialId: string) => {

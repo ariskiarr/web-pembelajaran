@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import React from "react";
-import { materials, LearningMaterial } from "@/data/materials";
+import { materials, LearningMaterial } from "@/data/index";
 import { exercises } from "@/data/exercises";
 
 export default function MaterialPage() {
