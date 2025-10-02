@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Python Learning Interactive",
+  title: "Python Learning Interactive - v2",
   description: "Platform pembelajaran Python interaktif dengan editor kode",
 };
 

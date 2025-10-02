@@ -39,7 +39,7 @@ export default function HomePage() {
   const features = [
     {
       icon: Code,
-      title: "Editor Interaktif",
+      title: "Python Learning Interactive - Updated",
       description:
         "Menulis dan menjalankan kode Python langsung di browser dengan Monaco Editor",
     },
