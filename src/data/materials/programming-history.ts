@@ -100,7 +100,7 @@ Komputer hanya bisa mengerti bahasa mesin (biner), jadi kode program yang kita t
 ### Compiler
 Menerjemahkan seluruh kode program sekaligus menjadi file bahasa mesin sebelum dijalankan. Hasilnya adalah file executable (.exe, .out, dll). Jika ada error, biasanya ditampilkan setelah proses kompilasi selesai.
 
-#### Analogi Sederhana Compiler:
+### Analogi Sederhana Compiler:
 Bayangkan kita mau menampilkan sebuah drama teater:
 - **Naskah Drama** → ini adalah kode program yang kita tulis
 - **Penerjemah** → sebelum drama dimulai, penerjemah membaca seluruh naskah dan menerjemahkannya ke bahasa yang dipahami aktor (bahasa mesin)

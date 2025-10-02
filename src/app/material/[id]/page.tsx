@@ -165,6 +165,21 @@ export default function MaterialPage() {
     return processText(text);
   };
 
+  // Function to calculate dynamic height based on number of lines
+  const calculateEditorHeight = (content: string) => {
+    const lines = content.split("\n").length;
+    const lineHeight = 20; // approximate line height in pixels
+    const padding = 32; // top and bottom padding
+    const minHeight = 60; // minimum height
+    const maxHeight = 400; // maximum height to prevent too tall editors
+
+    const calculatedHeight = Math.max(
+      minHeight,
+      Math.min(maxHeight, lines * lineHeight + padding)
+    );
+    return calculatedHeight;
+  };
+
   const formatContent = (content: string) => {
     const lines = content.split("\n");
     const result = [];
@@ -186,6 +201,7 @@ export default function MaterialPage() {
         }
 
         const codeContent = codeLines.join("\n");
+        const editorHeight = calculateEditorHeight(codeContent);
 
         result.push(
           <div key={`code-${i}`} className="my-6">
@@ -193,7 +209,7 @@ export default function MaterialPage() {
               <div className="bg-gray-800 px-4 py-2 text-sm text-gray-300 font-medium">
                 {language === "python" ? "Python Code" : language.toUpperCase()}
               </div>
-              <div className="h-48 sm:h-56 px-4">
+              <div className="px-4" style={{ height: `${editorHeight}px` }}>
                 <MonacoEditor
                   height="100%"
                   language={language}
@@ -591,7 +607,14 @@ export default function MaterialPage() {
                     <div className="bg-gray-800 px-4 py-2 text-sm text-gray-300 font-medium">
                       Python Code - Full Example
                     </div>
-                    <div className="h-64 sm:h-80 px-4">
+                    <div
+                      className="px-4"
+                      style={{
+                        height: `${calculateEditorHeight(
+                          material.codeExample
+                        )}px`,
+                      }}
+                    >
                       <MonacoEditor
                         height="100%"
                         language="python"
