@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { userProgressManager } from "@/utils/userProgress";
 import { useWelcomeModal } from "@/hooks/useWelcomeModal";
-import { useAuth } from "@/hooks/useAuth";
 import WelcomeModal from "@/components/WelcomeModal";
 import WelcomeSequence from "@/components/WelcomeSequence";
 import {
@@ -17,7 +16,6 @@ import {
   ArrowRight,
   Code,
   CheckCircle,
-  LogOut,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -32,9 +30,6 @@ export default function HomePage() {
   // Welcome modal hook
   const { showSequence, showWelcome, handleSequenceComplete, closeWelcome } =
     useWelcomeModal();
-
-  // Auth hook for logout functionality
-  const { logout } = useAuth();
 
   useEffect(() => {
     const progressData = userProgressManager.getOverallProgress();
@@ -144,18 +139,6 @@ export default function HomePage() {
                   </div>
                 </div>
               )}
-
-              {/* Logout Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={logout}
-                className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base"
-                title="Logout"
-              >
-                <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">Logout</span>
-              </motion.button>
             </div>
           </div>
         </div>
