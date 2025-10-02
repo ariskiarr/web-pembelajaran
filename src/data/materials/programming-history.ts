@@ -114,7 +114,7 @@ Jadi, compiler = penerjemah yang bekerja di awal, menerjemahkan semua naskah dul
 ### Interpreter
 Menerjemahkan baris demi baris kode program dan langsung menjalankannya. Tidak menghasilkan file executable, jadi setiap kali menjalankan program, interpreter harus ikut bekerja. Jika ada error, langsung berhenti di baris tersebut.
 
-#### Analogi Sederhana Interpreter:
+### Analogi Sederhana Interpreter:
 Interpreter itu seperti penerjemah langsung di sebuah pidato:
 - Setiap kalimat yang diucapkan pembicara langsung diterjemahkan saat itu juga
 - Jadi program bisa langsung dijalankan baris demi baris, tapi biasanya lebih lambat dibanding compiler
@@ -122,7 +122,7 @@ Interpreter itu seperti penerjemah langsung di sebuah pidato:
 **Contoh bahasa yang menggunakan Interpreter:** Python, JavaScript, PHP
 **Ilustrasi:** Program → Interpreter → Hasil langsung tampil
 
-#### Kesimpulan:
+### Kesimpulan:
 - **Compiler** itu seperti menerjemahkan seluruh buku dulu sebelum dibaca
 - **Interpreter** itu seperti menerjemahkan kalimat demi kalimat saat dibacakan
 

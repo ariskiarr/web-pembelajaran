@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   ArrowLeft,
   Book,
@@ -19,6 +20,16 @@ import { motion } from "framer-motion";
 import React from "react";
 import { materials, LearningMaterial } from "@/data/index";
 import { exercises } from "@/data/exercises";
+
+// Dynamically import Monaco Editor to avoid SSR issues
+const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-gray-900 rounded-lg p-4 text-green-400 text-sm font-mono">
+      Loading editor...
+    </div>
+  ),
+});
 
 export default function MaterialPage() {
   const params = useParams();
@@ -155,76 +166,124 @@ export default function MaterialPage() {
   };
 
   const formatContent = (content: string) => {
-    return content.split("\n").map((line, index) => {
+    const lines = content.split("\n");
+    const result = [];
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i];
+
+      // Handle code blocks
+      if (line.startsWith("```")) {
+        const language = line.slice(3).trim() || "python";
+        const codeLines = [];
+        i++; // Skip the opening ```
+
+        // Collect code lines until closing ```
+        while (i < lines.length && !lines[i].startsWith("```")) {
+          codeLines.push(lines[i]);
+          i++;
+        }
+
+        const codeContent = codeLines.join("\n");
+
+        result.push(
+          <div key={`code-${i}`} className="my-6">
+            <div className="bg-gray-900 rounded-lg overflow-hidden">
+              <div className="bg-gray-800 px-4 py-2 text-sm text-gray-300 font-medium">
+                {language === "python" ? "Python Code" : language.toUpperCase()}
+              </div>
+              <div className="h-48 sm:h-56 px-4">
+                <MonacoEditor
+                  height="100%"
+                  language={language}
+                  value={codeContent}
+                  theme="vs-dark"
+                  options={{
+                    readOnly: true,
+                    minimap: { enabled: false },
+                    scrollBeyondLastLine: false,
+                    fontSize: 14,
+                    lineNumbers: "off",
+                    folding: false,
+                    glyphMargin: false,
+                    lineDecorationsWidth: 0,
+                    padding: { top: 16, bottom: 16 },
+                    overviewRulerBorder: false,
+                    overviewRulerLanes: 0,
+                    hideCursorInOverviewRuler: true,
+                    scrollbar: {
+                      vertical: "auto",
+                      horizontal: "auto",
+                      verticalScrollbarSize: 8,
+                      horizontalScrollbarSize: 8,
+                    },
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        );
+        i++; // Skip the closing ```
+        continue;
+      }
+
       // Handle headers
       if (line.startsWith("# ")) {
-        return (
+        result.push(
           <h1
-            key={index}
+            key={i}
             className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 mt-6 sm:mt-8 first:mt-0"
           >
             {formatTextWithMarkdown(line.slice(2))}
           </h1>
         );
-      }
-      if (line.startsWith("## ")) {
-        return (
+      } else if (line.startsWith("## ")) {
+        result.push(
           <h2
-            key={index}
+            key={i}
             className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 mt-5 sm:mt-6"
           >
             {formatTextWithMarkdown(line.slice(3))}
           </h2>
         );
-      }
-      if (line.startsWith("### ")) {
-        return (
+      } else if (line.startsWith("### ")) {
+        result.push(
           <h3
-            key={index}
+            key={i}
             className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 mt-4 sm:mt-5"
           >
             {formatTextWithMarkdown(line.slice(4))}
           </h3>
         );
-      }
-
-      // Handle code blocks
-      if (line.startsWith("```")) {
-        return null; // Handle in a separate function
-      }
-
-      // Handle bullet points
-      if (line.startsWith("- ")) {
-        return (
+      } else if (line.startsWith("- ")) {
+        // Handle bullet points
+        result.push(
           <li
-            key={index}
+            key={i}
             className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 ml-4 list-disc"
           >
             {formatTextWithMarkdown(line.slice(2))}
           </li>
         );
-      }
-
-      // Handle numbered lists
-      if (/^\d+\./.test(line.trim())) {
-        return (
+      } else if (/^\d+\./.test(line.trim())) {
+        // Handle numbered lists
+        result.push(
           <li
-            key={index}
+            key={i}
             className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2 ml-4 list-decimal"
           >
             {formatTextWithMarkdown(line.replace(/^\d+\.\s*/, ""))}
           </li>
         );
-      }
-
-      // Handle img tags
-      if (line.trim().startsWith("<img")) {
+      } else if (line.trim().startsWith("<img")) {
+        // Handle img tags
         const imgMatch = line.match(
           /<img\s+src="([^"]+)"\s+alt="([^"]*)"[^>]*>/
         );
         if (imgMatch) {
-          return (
-            <div key={index} className="my-6 text-center">
+          result.push(
+            <div key={i} className="my-6 text-center">
               <Image
                 src={imgMatch[1]}
                 alt={imgMatch[2]}
@@ -235,22 +294,25 @@ export default function MaterialPage() {
             </div>
           );
         }
-      }
-
-      // Regular paragraphs
-      if (line.trim()) {
-        return (
+      } else if (line.trim()) {
+        // Regular paragraphs
+        result.push(
           <p
-            key={index}
+            key={i}
             className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4"
           >
             {formatTextWithMarkdown(line)}
           </p>
         );
+      } else {
+        // Empty lines
+        result.push(<br key={i} />);
       }
 
-      return <br key={index} />;
-    });
+      i++;
+    }
+
+    return result;
   };
 
   return (
@@ -523,12 +585,40 @@ export default function MaterialPage() {
                 <div className="mt-6 sm:mt-8">
                   <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center">
                     <Code className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-gray-600" />
-                    Code Example
+                    Complete Code Example
                   </h3>
-                  <div className="bg-gray-900 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 overflow-x-auto">
-                    <pre className="text-green-400 text-xs sm:text-sm">
-                      <code>{material.codeExample}</code>
-                    </pre>
+                  <div className="bg-gray-900 rounded-lg sm:rounded-xl overflow-hidden">
+                    <div className="bg-gray-800 px-4 py-2 text-sm text-gray-300 font-medium">
+                      Python Code - Full Example
+                    </div>
+                    <div className="h-64 sm:h-80 px-4">
+                      <MonacoEditor
+                        height="100%"
+                        language="python"
+                        value={material.codeExample}
+                        theme="vs-dark"
+                        options={{
+                          readOnly: true,
+                          minimap: { enabled: false },
+                          scrollBeyondLastLine: false,
+                          fontSize: 14,
+                          lineNumbers: "off",
+                          folding: false,
+                          glyphMargin: false,
+                          lineDecorationsWidth: 0,
+                          padding: { top: 16, bottom: 16 },
+                          overviewRulerBorder: false,
+                          overviewRulerLanes: 0,
+                          hideCursorInOverviewRuler: true,
+                          scrollbar: {
+                            vertical: "auto",
+                            horizontal: "auto",
+                            verticalScrollbarSize: 8,
+                            horizontalScrollbarSize: 8,
+                          },
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               )}
