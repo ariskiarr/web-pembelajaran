@@ -4,32 +4,33 @@ export const variablesDataTypes: LearningMaterial = {
   id: "variables-datatypes",
   title: "Variabel dan Tipe Data",
   category: "Dasar",
-  description:
-    "Pelajari cara menyimpan data dalam variabel dan berbagai tipe data di Python",
-  content: `
-# Variabel dan Tipe Data
+  description: "Pelajari cara menyimpan data dalam variabel dan berbagai tipe data di Python",
+  content: `# Variabel dan Tipe Data
 
-## Variabel
+## Apa itu Variable ?
 
-### Apa itu Variabel?
-Variabel dalam pemrograman adalah lokasi penyimpanan data yang diberi nama simbolis. Variabel dapat diartikan sebagai **wadah yang menyimpan data** atau objek yang bisa diketahui atau tidak diketahui.
+Variabel dalam pemrograman adalah lokasi penyimpanan data yang diberi nama simbolis. Variabel dapat diartikan sebagai wadah yang menyimpan data atau objek yang bisa diketahui atau tidak diketahui.
 
-Jadi jika variabel dianalogikan sebagai sebuah **box** dan value/nilainya adalah sebuah **bola** dalam box tersebut.
+![Variabel](../../../public/images/variabel.png)
 
-Nah di bahasa Python, kamu **tidak perlu mendeklarasikan tipe data secara eksplisit**.
+Jadi jika variabel dianalogikan sebagai sebuah box dan value/nilainya adalah sebuah bola dalam box tersebut
 
-> "Secara sederhana deklarasi adalah kita memberi tahu komputer tipe data yang ada di dalam sebuah variabel"
+Nah di bahasa Python, kamu tidak perlu mendeklarasikan tipe data secara eksplisit.
 
-### Aturan Penamaan Variabel
+**"Secara sederhana deklarasi adalah kita memberi tahu komputer tipe data yang ada di dalam sebuah variabel"**
+
+## Aturan Penamaan Variabel
+
 1. Dapat menggunakan huruf kapital atau huruf kecil atau underscore atau angka
-2. **Wajib diawali dengan huruf atau underscore**
-3. **Tidak boleh menggunakan reserved word** (syntax/Code dalam bahasa pemrograman)
-4. **Tidak boleh diawali dengan angka**
-5. **Tidak boleh ada spasi** diantaranya
+2. Wajib diawali dengan huruf atau underscore
+3. Tidak boleh menggunakan reserved word (syntax/Code dalam bahasa pemrograman)
+4. Tidak boleh diawali dengan angka
+5. Tidak boleh ada spasi diantaranya
 
-### Contoh Pemakaian Variabel
+## Contoh pemakaian variabel
+
 \`\`\`python
-# Camel Case (diawali dengan huruf kecil dan huruf kapital setiap kata yang berbeda)
+# Camel Case (di awalai dengan huruf kecil dan huruf kapital setiap kata yang berbeda)
 namaLengkapMahasiswa = "Mulyono"
 
 # Pascal Case (huruf kapital di setiap kata)
@@ -39,8 +40,11 @@ NamaLengkapMahasiswa = "Mulyono"
 nama_lengkap_mahasiswa = "Mulyono"
 \`\`\`
 
-### Deklarasi Variabel
-**Rumusnya**: \`NamaVariabel = Value\`
+## Deklarasi Variabel
+
+**Rumusnya = NamaVariabel = Value**
+
+Contoh:
 
 \`\`\`python
 nama = "Mulyono"
@@ -48,161 +52,229 @@ print(nama)
 
 angka1 = 5
 angka2 = angka1 + 5
-print(angka2)  # akan muncul angka 10
+print(angka2) # akan muncul angka 10 karena angka1 = 5 dan variabel angka 2 menyimpan operator angka1 + 5 maka sama dengan 10
 \`\`\`
 
-### Case Sensitive
-Penamaan variabel itu termasuk **case sensitive** atau secara sederhana penulisan harus benar-benar sama.
+Penamaan variabel itu termasuk case sensitive atau secara sederhana penulisan hanya harus benar benar sama beda satu huruf atau karakter saja sudah menandakan bahwa variabel tersebut berbeda contoh nama variabel peka terhadap huruf besar dan kecil
 
 \`\`\`python
 TEMPAT = "Unej"
 Tempat = "Stadion"
 tempat = "Fasilkom"
-print("sekarang di", tempat)  # output: sekarang di Fasilkom
+print("sekarang di", tempat)  # output : sekarang di Fasilkom
 \`\`\`
 
-### Deklarasi Ulang
-Jika kita mendeklarasikan ulang variabel dengan nama yang sama, nilai lama variabel tersebut akan digantikan dengan nilai baru.
+Maka yang akan muncul adalah Fasilkom, dapat di lihat walau arti dalam variabel tersebut sama namun perbedaan huruf kapital dan huruf kecil sangat mempengaruhi pemanggilann variabel tersebut
 
+## Deklarasi Ulang
+
+Jika kita mendeklarasikan ulang variabel dengan nama yang sama, nilai lama variabel tersebut akan digantikan dengan nilai baru. Python tidak memberikan peringatan atau error ketika hal ini terjadi.
+
+Contoh:
 \`\`\`python
 nama = "Mulyono"
 nama = "Fana"
-print("nama saya sekarang", nama)  # output: nama saya sekarang Fana
+print("nama saya sekarang", nama)
 \`\`\`
+
+**Penjelasan:** yang awalnya value dari variabel nama yaitu Mulyono namun variabel nama di deklarasi ulang dengan value Fana maka nilai variabel yang terbaru(sekarang) yaitu Fana nah kondisi ini di sebut deklarasi ulang
 
 ## Tipe Data
 
-### Apa itu Tipe Data?
-Tipe data adalah **atribut yang terkait dengan sepotong data** yang bisa memberi tahu sistem komputer cara untuk menafsirkan nilainya.
+### Apa itu Tipe Data ?
 
-### Jenis-Jenis Tipe Data
+Tipe data adalah atribut yang terkait dengan sepotong data yang bisa memberi tahu sistem komputer cara untuk menafsirkan nilainya.
+Dalam Pemrograman kita pastinya tidak lepas dari yang namanya pengolahan data. Data - Data yang kita olah tentunya memiliki beragam jenis dengan fungsi dan tujuan masing - masing.
 
-#### 1. int (Integer / Bilangan Bulat)
+![Tipe Data](../../../public/images/tipedata.png)
+
+Gambar di atas merupakan jenis jenis tipe data yang akan kita pelajari
+
+Jadi jika dianalogikan tipe data itu adalah seperti barang barang yang ada di sekitar kita sebagai contoh:
+- botol = menyimpan air
+- tas = menyimpan buku dan alat tulis
+- lemari = menyimpan pakaian
+
+Nah tipe data juga seperti itu:
+
+### 1. int (integer / bilangan bulat)
 Untuk angka bulat: positif, negatif, atau nol.
+
+Contoh code:
 \`\`\`python
 umur = 21
 tahun = -2025
-jumlah = 0
 \`\`\`
 
-#### 2. float (Bilangan Pecahan / Desimal)
+### 2. float (bilangan pecahan / desimal)
 Untuk angka dengan koma desimal.
+
+Contoh code:
 \`\`\`python
 pi = 3.14
 suhu = -12.5
-tinggi = 175.8
 \`\`\`
 
-#### 3. str (String / Teks)
-Untuk menyimpan teks, karakter, kalimat.
+### 3. complex
+Untuk angka yang punya bagian real dan imajiner.
+
+Contoh code:
+\`\`\`python
+z = 3 + 5j
+\`\`\`
+
+### 4. str (string / teks)
+Untuk menyimpan teks, karakter, kalimat
+
+Contoh code:
 \`\`\`python
 nama = "Ariski"
 pesan = 'Halo Dunia'
-alamat = "Jl. Merdeka No. 123"
 \`\`\`
 
-#### 4. bool (Boolean / Logika)
+### 5. bool (boolean / logika)
 Hanya punya 2 nilai: True atau False.
+
+Contoh code:
 \`\`\`python
 lulus = True
 hujan = False
-sudah_menikah = True
 \`\`\`
 
-#### 5. list (Daftar)
-Menyimpan kumpulan data yang bisa berbeda tipe, dan bisa diubah.
+### 6. list
+Menyimpan kumpulan data yang bisa berbeda tipe, dan bisa diubah (mutable).
+
+Contoh code:
 \`\`\`python
 angka = [1, 2, 3, 4]
 campuran = [1, "teks", 3.5, True]
-buah = ["apel", "pisang", "jeruk"]
 \`\`\`
 
-### Mengecek Tipe Data
+### 7. tuple
+Mirip list, tapi tidak bisa diubah (immutable).
+
+Contoh code:
 \`\`\`python
-nama = "Ariski"
-umur = 21
-tinggi = 175.8
-lulus = True
-
-print(type(nama))    # <class 'str'>
-print(type(umur))    # <class 'int'>
-print(type(tinggi))  # <class 'float'>
-print(type(lulus))   # <class 'bool'>
+koordinat = (10, 20)
+hari = ("Senin", "Selasa", "Rabu")
 \`\`\`
 
-**"Yuk kita lanjut ke latihan untuk mempraktikkan variabel dan tipe data!"** - Ariski
-  `,
+### 8. set
+Menyimpan kumpulan data unik (tidak ada duplikat), urutannya tidak terjamin.
+
+Contoh code:
+\`\`\`python
+bilangan = {1, 2, 3, 3, 4}  # hasilnya {1, 2, 3, 4}
+\`\`\`
+
+### 9. dict (dictionary)
+Menyimpan data dalam bentuk key : value (seperti kamus).
+
+Contoh code:
+\`\`\`python
+mahasiswa = {
+    "nama": "Ariski",
+    "umur": 21,
+    "jurusan": "Sistem Informasi"
+}
+\`\`\`
+
+**Catatan:** untuk variabel nomor 4,6,7,8 dan 9 akan dijelaskan pada materi selanjutnya yaitu tipe data sequential
+
+## Intinya
+- **Angka** → int, float, complex
+- **Teks** → str
+- **Logika** → bool
+- **Kumpulan data** → list, tuple, set, dict`,
   codeExample: `# Contoh Variabel dan Tipe Data
 
-# 1. Deklarasi Variabel dengan berbagai tipe data
-nama = "Ariski"           # string
-umur = 21                # integer
-tinggi = 175.8          # float
-lulus = True            # boolean
+# 1. Contoh penamaan variabel
+# Camel Case
+namaLengkapMahasiswa = "Mulyono"
 
-# 2. Contoh penamaan variabel (Snake Case - yang direkomendasikan)
-nama_lengkap = "Ariski Ardiansyah"
-nilai_matematika = 85
-sudah_lulus = True
+# Pascal Case
+NamaLengkapMahasiswa = "Mulyono"
 
-# 3. Case Sensitive - variabel berbeda
-NAMA = "BESAR"
-Nama = "Kapital"
-nama = "kecil"
+# Snake Case
+nama_lengkap_mahasiswa = "Mulyono"
 
-print("Variabel NAMA:", NAMA)
-print("Variabel Nama:", Nama)  
-print("Variabel nama:", nama)
+# 2. Deklarasi Variabel
+nama = "Mulyono"
+print(nama)
 
-# 4. Deklarasi ulang variabel
-status = "Mahasiswa"
-print("Status awal:", status)
+angka1 = 5
+angka2 = angka1 + 5
+print(angka2) # akan muncul angka 10
 
-status = "Alumni"  # nilai lama diganti
-print("Status sekarang:", status)
+# 3. Case Sensitive
+TEMPAT = "Unej"
+Tempat = "Stadion"
+tempat = "Fasilkom"
+print("sekarang di", tempat)  # output: sekarang di Fasilkom
 
-# 5. Berbagai tipe data
+# 4. Deklarasi Ulang
+nama = "Mulyono"
+nama = "Fana"
+print("nama saya sekarang", nama)
+
+# 5. Contoh berbagai tipe data
 # Integer
-jumlah_siswa = 30
-tahun_lahir = 2002
+umur = 21
+tahun = -2025
 
-# Float  
-berat_badan = 65.5
-suhu = 36.5
+# Float
+pi = 3.14
+suhu = -12.5
+
+# Complex
+z = 3 + 5j
 
 # String
-alamat = "Jl. Merdeka No. 123"
-hobi = 'Coding'
+nama = "Ariski"
+pesan = 'Halo Dunia'
 
 # Boolean
-aktif = True
-menikah = False
+lulus = True
+hujan = False
 
 # List
-buah_favorit = ["apel", "pisang", "jeruk"]
-angka = [1, 2, 3, 4, 5]
+angka = [1, 2, 3, 4]
+campuran = [1, "teks", 3.5, True]
 
-# 6. Mengecek tipe data
-print("\\nTipe Data:")
-print("Type nama:", type(nama))
-print("Type umur:", type(umur))
-print("Type tinggi:", type(tinggi))
-print("Type lulus:", type(lulus))
-print("Type buah_favorit:", type(buah_favorit))`,
+# Tuple
+koordinat = (10, 20)
+hari = ("Senin", "Selasa", "Rabu")
+
+# Set
+bilangan = {1, 2, 3, 3, 4}  # hasilnya {1, 2, 3, 4}
+
+# Dictionary
+mahasiswa = {
+    "nama": "Ariski",
+    "umur": 21,
+    "jurusan": "Sistem Informasi"
+}
+
+# Mengecek tipe data
+print(type(nama))    # <class 'str'>
+print(type(umur))    # <class 'int'>
+print(type(pi))      # <class 'float'>
+print(type(lulus))   # <class 'bool'>`,
   keyPoints: [
     "Variabel adalah wadah untuk menyimpan data dengan nama simbolis",
     "Python tidak perlu deklarasi tipe data eksplisit (dynamic typing)",
     "Aturan penamaan: diawali huruf/underscore, tidak boleh spasi, case sensitive",
-    "Deklarasi variabel: NamaVariabel = Value",
-    "Deklarasi ulang akan mengganti nilai lama dengan nilai baru",
-    "Tipe data utama: int, float, str, bool, list",
-    "Gunakan type() untuk mengecek tipe data variabel",
+    "Tipe data dasar: int, float, complex, str, bool",
+    "Tipe data koleksi: list, tuple, set, dict",
+    "Deklarasi ulang variabel akan mengganti nilai lama dengan nilai baru",
+    "Gunakan function type() untuk mengecek tipe data suatu variabel",
+    "Penamaan variabel menggunakan camelCase, PascalCase, atau snake_case"
   ],
   nextSteps: [
     "Praktikkan dengan latihan Variabel dan Tipe Data",
     "Pelajari operasi matematika dengan variabel",
     "Coba konversi antar tipe data (int, float, str)",
-    "Pelajari cara input data dari user dengan input()",
+    "Pelajari cara menggunakan input() untuk menerima data dari user"
   ],
-  relatedExercises: ["2"],
+  relatedExercises: ["2"]
 };
