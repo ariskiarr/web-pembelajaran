@@ -16,7 +16,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const correctUsername = "lutvianurjannah";
-  const correctPassword = "GqRwEw$EwE";
+  const correctPassword = "GqRwEw$EwE"; // Updated password
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
