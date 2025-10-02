@@ -12,7 +12,7 @@ export const variablesDataTypes: LearningMaterial = {
 
 Variabel dalam pemrograman adalah lokasi penyimpanan data yang diberi nama simbolis. Variabel dapat diartikan sebagai wadah yang menyimpan data atau objek yang bisa diketahui atau tidak diketahui.
 
-![Variabel](../../../public/images/variabel.png)
+<img src="/images/variabel.png" alt="Konsep Variabel" style="max-width: 100%; height: auto;" />
 
 Jadi jika variabel dianalogikan sebagai sebuah box dan value/nilainya adalah sebuah bola dalam box tersebut
 
@@ -87,7 +87,7 @@ print("nama saya sekarang", nama)
 Tipe data adalah atribut yang terkait dengan sepotong data yang bisa memberi tahu sistem komputer cara untuk menafsirkan nilainya.
 Dalam Pemrograman kita pastinya tidak lepas dari yang namanya pengolahan data. Data - Data yang kita olah tentunya memiliki beragam jenis dengan fungsi dan tujuan masing - masing.
 
-![Tipe Data](../../../public/images/tipedata.png)
+<img src="/images/tipedata.png" alt="Jenis-jenis Tipe Data" style="max-width: 100%; height: auto;" />
 
 Gambar di atas merupakan jenis jenis tipe data yang akan kita pelajari
 

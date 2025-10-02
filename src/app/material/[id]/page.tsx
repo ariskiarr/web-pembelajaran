@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   ArrowLeft,
   Book,
@@ -214,6 +215,26 @@ export default function MaterialPage() {
             {formatTextWithMarkdown(line.replace(/^\d+\.\s*/, ""))}
           </li>
         );
+      }
+
+      // Handle img tags
+      if (line.trim().startsWith("<img")) {
+        const imgMatch = line.match(
+          /<img\s+src="([^"]+)"\s+alt="([^"]*)"[^>]*>/
+        );
+        if (imgMatch) {
+          return (
+            <div key={index} className="my-6 text-center">
+              <Image
+                src={imgMatch[1]}
+                alt={imgMatch[2]}
+                width={600}
+                height={400}
+                className="max-w-full h-auto mx-auto rounded-lg shadow-md"
+              />
+            </div>
+          );
+        }
       }
 
       // Regular paragraphs
