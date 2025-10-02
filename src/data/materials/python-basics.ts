@@ -29,7 +29,7 @@ print("Halo, Dunia!")
 
 ### Contoh Penggunaan Print
 
-#### Menampilkan Teks:
+### Menampilkan Teks:
 \`\`\`python
 print("Selamat datang di Python")
 print('Python itu mudah!')
@@ -40,7 +40,7 @@ Selamat datang di Python
 Python itu mudah!
 \`\`\`
 
-#### Menampilkan Angka:
+### Menampilkan Angka:
 \`\`\`python
 print(100)
 print(3.14)
@@ -51,7 +51,7 @@ print(3.14)
 3.14
 \`\`\`
 
-#### Menampilkan Beberapa Item:
+### Menampilkan Beberapa Item:
 \`\`\`python
 print("Nama:", "Budi")
 print("Umur:", 20, "tahun")
@@ -68,7 +68,7 @@ print("item1", "item2", "item3")
 \`\`\`
 Di Python untuk memisahkan item menggunakan tanda koma
 
-#### Print dengan Pemisah Kustom:
+### Print dengan Pemisah Kustom:
 \`\`\`python
 print("Apel", "Jeruk", "Mangga", sep=" - ")
 \`\`\`
@@ -80,7 +80,7 @@ print("A", "B", "C", sep=" | ") # Output: A | B | C
 print("X", "Y", "Z", sep="->") # Output: X->Y->Z
 \`\`\`
 
-#### Print Tanpa Baris Baru:
+### Print Tanpa Baris Baru:
 \`\`\`python
 print("Baris 1", end=" ")
 print("Baris 2")

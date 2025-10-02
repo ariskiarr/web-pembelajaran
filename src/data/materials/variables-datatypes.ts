@@ -4,7 +4,8 @@ export const variablesDataTypes: LearningMaterial = {
   id: "variables-datatypes",
   title: "Variabel dan Tipe Data",
   category: "Dasar",
-  description: "Pelajari cara menyimpan data dalam variabel dan berbagai tipe data di Python",
+  description:
+    "Pelajari cara menyimpan data dalam variabel dan berbagai tipe data di Python",
   content: `# Variabel dan Tipe Data
 
 ## Apa itu Variable ?
@@ -268,13 +269,13 @@ print(type(lulus))   # <class 'bool'>`,
     "Tipe data koleksi: list, tuple, set, dict",
     "Deklarasi ulang variabel akan mengganti nilai lama dengan nilai baru",
     "Gunakan function type() untuk mengecek tipe data suatu variabel",
-    "Penamaan variabel menggunakan camelCase, PascalCase, atau snake_case"
+    "Penamaan variabel menggunakan camelCase, PascalCase, atau snake_case",
   ],
   nextSteps: [
     "Praktikkan dengan latihan Variabel dan Tipe Data",
     "Pelajari operasi matematika dengan variabel",
     "Coba konversi antar tipe data (int, float, str)",
-    "Pelajari cara menggunakan input() untuk menerima data dari user"
+    "Pelajari cara menggunakan input() untuk menerima data dari user",
   ],
-  relatedExercises: ["2"]
+  relatedExercises: ["2"],
 };
