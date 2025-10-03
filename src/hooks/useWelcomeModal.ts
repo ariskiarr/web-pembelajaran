@@ -3,30 +3,26 @@
 import { useState, useEffect } from "react";
 
 export function useWelcomeModal() {
-  const [showSequence, setShowSequence] = useState(false);
+  const [showSequence, setShowSequence] = useState(false); // Tidak akan pernah true
   const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
-    // Sequence selalu muncul setiap kali halaman di-load (tidak disimpan di localStorage)
-    const timer = setTimeout(() => {
-      setShowSequence(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleSequenceComplete = () => {
-    setShowSequence(false);
-
-    // Cek apakah user sudah pernah melihat welcome modal utama
+    // Langsung cek apakah user sudah pernah melihat welcome modal utama
     const hasSeenWelcome = localStorage.getItem("hasSeenWelcome");
 
     if (!hasSeenWelcome) {
-      // Tampilkan welcome modal hanya jika belum pernah dilihat
-      setTimeout(() => {
+      // Tampilkan welcome modal langsung tanpa sequence
+      const timer = setTimeout(() => {
         setShowWelcome(true);
-      }, 500);
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
+  }, []);
+
+  const handleSequenceComplete = () => {
+    // Fungsi ini tidak akan dipanggil karena sequence dinonaktifkan
+    setShowSequence(false);
   };
 
   const closeWelcome = () => {
