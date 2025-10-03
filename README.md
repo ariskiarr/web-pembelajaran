@@ -5,7 +5,6 @@ Platform pembelajaran Python interaktif dengan editor kode real-time dan eksekus
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ariskiarr/web-pembelajaran)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-blue)](https://web-pembelajaran.vercel.app)
 
-> 🚀 **Ready for Production**: Proyek ini sudah siap di-deploy ke Vercel dengan konfigurasi optimal!
 
 ## 🚀 Fitur Utama
 
