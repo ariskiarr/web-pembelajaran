@@ -281,4 +281,4 @@ Untuk pertanyaan atau saran, silakan buat issue di repository ini.
 
 ---
 
-**Happy Learning! 🐍✨**
+*Happy Learning! 🐍✨*
