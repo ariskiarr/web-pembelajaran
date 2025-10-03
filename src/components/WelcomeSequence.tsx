@@ -18,23 +18,23 @@ export default function WelcomeSequence({
   const popups = [
     {
       gif: "/gifs/hai.gif",
-      title: "Haaallooo Via! 👋",
+      title: "Haaallooo ! 👋",
       message:
-        "Selamat datang di web ini! Semoga web ini dapat membantu Via yah dalam belajar coding 😊",
+        "Selamat datang di web ini! Semoga web ini dapat membantu yah dalam belajar coding 😊",
       buttonText: "Selanjutnya",
     },
     {
       gif: "/gifs/semangat.gif",
       title: "Akhirnya! 🎉",
       message:
-        "Akhirnya webnya sudah jadi! Tapi ada beberapa materi yang belum yah Via, tapi nda apa yang ada dulu yahhh 😅",
+        "Akhirnya webnya sudah jadi!",
       buttonText: "Selanjutnya",
     },
     {
       gif: "/gifs/dada.gif",
-      title: "Semangat Via! 💪",
+      title: "Semangat! 💪",
       message:
-        "Semangat yahh Via belajarnya! Inget nda bole pusing-pusing, kalau ada yang nda paham tanya ke Ariski yahh Via! Itu aja dari Ariski, dadaaaaa Via selamat belajar! 🎓",
+        "Semangat yahh belajarnya! 🎓",
       buttonText: "Selesai",
     },
   ];
