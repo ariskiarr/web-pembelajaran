@@ -171,7 +171,7 @@ export default function MaterialPage() {
     const lineHeight = 20; // approximate line height in pixels
     const padding = 32; // top and bottom padding
     const minHeight = 60; // minimum height
-    const maxHeight = 400; // maximum height to prevent too tall editors
+    const maxHeight = 400; // maximum heights to prevent too tall editors
 
     const calculatedHeight = Math.max(
       minHeight,

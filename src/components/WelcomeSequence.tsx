@@ -27,7 +27,7 @@ export default function WelcomeSequence({
       gif: "/gifs/semangat.gif",
       title: "Akhirnya! 🎉",
       message:
-        "Akhirnya webnya sudah jadi!",
+        "Akhirnya webnya sudah jadi! Tapi ada beberapa materi yang belum yah, tapi nda apa yang ada dulu yahhh 😅",
       buttonText: "Selanjutnya",
     },
     {
