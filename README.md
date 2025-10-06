@@ -270,10 +270,6 @@ Untuk berkontribusi:
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📝 License
-
-Project ini menggunakan MIT License. Lihat file `LICENSE` untuk detail.
-
 
 
 *Happy Learning! 🐍✨*
