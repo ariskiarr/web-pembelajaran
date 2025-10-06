@@ -274,10 +274,6 @@ Untuk berkontribusi:
 
 Project ini menggunakan MIT License. Lihat file `LICENSE` untuk detail.
 
-## 📧 Contact
 
-Untuk pertanyaan atau saran, silakan buat issue di repository ini.
-
----
 
 *Happy Learning! 🐍✨*
