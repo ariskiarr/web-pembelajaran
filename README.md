@@ -272,5 +272,3 @@ Untuk berkontribusi:
 5. Open Pull Request
 
 
-
-*Happy Learning! 🐍✨*
